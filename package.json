@@ -5,7 +5,7 @@
   },
   "name": "initiate-dnd",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -13,8 +13,7 @@
     "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
