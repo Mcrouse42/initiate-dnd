@@ -11,39 +11,37 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type User {
-    _id: ID
-    username: String
-    email: String
-    friendCount: Int
-    thoughts: [Thought]
-    friends: [User]
-  }
+type DungeonMaster {
+  _id: ID
+  username: String
+  email: String
+  players: [Player]
+}
 
-  type Thought {
-    _id: ID
-    thoughtText: String
-    createdAt: String
-    username: String
-    reactionCount: Int
-    reactions: [Reaction]
-  }
+type Player {
+  _id: ID
+  playerName: String
+  playerClass: String
+  playerRace: String
+  playerLevel: Int
+  playerArmorClass: Int
+  playerHitPoints: Int
 
-  type Reaction {
-    _id: ID
-    reactionBody: String
-    createdAt: String
-    username: String
-  }
+}
 
-  type Query {
-    users: [User]
-    user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(_id: ID!): Thought
+type Query {
+    dungeonMasters: [DungeonMaster]
+    dungeonMaster(username: String): [DungeonMaster]
   }
 `;
-
 module.exports = typeDefs;
 
+// thoughts: [Thought]
 
+// ------ This is the query code if you want to check for all dm,dm by username, all players, player by playername
+// type Query {
+//   dungeonMasters: [DungeonMaster]
+//   dungeonMaster(username: String): [DungeonMaster]
+//   players: [Player]
+//   player(playerName: String): [Player]
+// }

@@ -1,26 +1,44 @@
-const { User, Thought } = require('../models');
+const { DungeonMaster, Player, Monster } = require('../models');
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return User.find()
-        .select('-__v -password')
-        .populate('thoughts')
-        .populate('friends');
+    // get all dungeon masters
+    // to test:
+    // query {
+    //   dungeonMasters {
+    //     _id
+    //     username
+    //     email
+    //   }
+    // }
+    dungeonMasters: async () => {
+      return DungeonMaster.find();
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username })
-        .select('-__v -password')
-        .populate('friends')
-        .populate('thoughts');
-    },
-    thoughts: async (parent, { username }) => {
+
+    // get a dungeon master by username
+    // to test:
+    // query {
+    //   dungeonMaster(username: "Amira99") {
+    //     _id
+    //     username
+    //     email
+    //   }
+    // }
+    dungeonMaster: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+      return DungeonMaster.find(params);
     },
-    thought: async (parent, { _id }) => {
-      return Thought.findOne({ _id });
-    }
+
+    // get all players
+    // players: async () => {
+    //   return Player.find();
+    // },
+
+    // get player by playerName
+    // player: async (parent, { playerName }) => {
+    //   const params = playerName ? { playerName } : {};
+    //   return Player.find(params);
+    // }
   }
 };
 
