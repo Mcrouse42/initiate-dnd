@@ -1,4 +1,5 @@
-const User = require('./User');
-const Thought = require('./Thought');
+const DungeonMaster = require('./DungeonMaster');
+const Player = require('./Player');
+const Monster = require('./Monster');
 
-module.exports = { User, Thought };
+module.exports = { DungeonMaster, Player, Monster };

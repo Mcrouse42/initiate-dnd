@@ -37,35 +37,35 @@ const monsterSchema = new Schema(
       required: true,
       trim: true
     },
-    playerHitPoints: {
+    monsterHitPoints: {
       type: Number,
       required: true,
       trim: true
     },
     statsModifier: [
       {
-        playerStrengthStat: {type: Number},
-        playerStrengthModifier: {type: Number}
+        monsterStrengthStat: {type: Number},
+        monsterStrengthModifier: {type: Number}
       },
       {
-        playerDexterityStat: {type: Number},
-        playerDexterityModifier: {type: Number}
+        monsterDexterityStat: {type: Number},
+        monsterDexterityModifier: {type: Number}
       },
       {
-        playerConstitutionStat: {type: Number},
-        playerConstitutionModifier: {type: Number}
+        monsterConstitutionStat: {type: Number},
+        monsterConstitutionModifier: {type: Number}
       },
       {
-        playerIntelligenceStat: {type: Number},
-        playerIntelligenceModifier: {type: Number}
+        monsterIntelligenceStat: {type: Number},
+        monsterIntelligenceModifier: {type: Number}
       },
       {
-        playerWisdomStat: {type: Number},
-        playerWisdomModifier: {type: Number}
+        monsterWisdomStat: {type: Number},
+        monsterWisdomModifier: {type: Number}
       },
       {
-        playerCharismaStat: {type: Number},
-        playerCharismaModifier: {type: Number}
+        monsterCharismaStat: {type: Number},
+        monsterCharismaModifier: {type: Number}
       },
     ],
     monsterActions: [{
@@ -80,6 +80,6 @@ const monsterSchema = new Schema(
   }
 );
 
-const Monster = model('Player', monsterSchema);
+const Monster = model('Monster', monsterSchema);
 
 module.exports = Monster;
