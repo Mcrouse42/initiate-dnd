@@ -1,78 +1,57 @@
 // Look at the book search challenge for 3rd party
-
-
-
-
 const faker = require('faker');
-
 const db = require('../config/connection');
-const { Thought, User } = require('../models');
+const { DungeonMaster, Player, Monster } = require('../models');
 
 db.once('open', async () => {
-  await Thought.deleteMany({});
-  await User.deleteMany({});
+  await DungeonMaster.deleteMany({});
+  await Player.deleteMany({});
+  // await Monster.deleteMany({});  
 
-  // create user data
-  const userData = [];
+  // create DM data
+  const dmData = [];
 
-  for (let i = 0; i < 50; i += 1) {
+  for (let i = 0; i < 5; i += 1) {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
     const password = faker.internet.password();
 
-    userData.push({ username, email, password });
+    dmData.push({ username, email, password });
   }
 
-  const createdUsers = await User.collection.insertMany(userData);
+  const createdDMs = await DungeonMaster.collection.insertMany(dmData);
 
-  // create friends
-  for (let i = 0; i < 100; i += 1) {
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { _id: userId } = createdUsers.ops[randomUserIndex];
+  // create player data
+  let createdPlayers = [];
+  
+  for (let i = 0; i < 20; i += 1) {
+    // array of choices for random
+    const classes = [ "barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard" ];
+    const races = [ "dragonborn", "dwarf", "elf", "gnome", "half-elf", "halfing", "half-orc", "human", "tiefling" ];
+    
+    // player information
+    const playerName = faker.internet.userName();
+    const playerClass = classes[Math.floor(Math.random() * classes.length)];
+    const playerRace = races[Math.floor(Math.random() * races.length)];
+    const playerLevel = Math.floor(Math.random() * (20 - 1 + 1)) + 1; //(max - min + 1)) + min
+    const playerArmorClass = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
+    const playerHitPoints = Math.floor(Math.random() * (100 - 10 + 10)) + 10; //(max - min + 1)) + min
 
-    let friendId = userId;
+    // assign to a DM
+    const randomDMIndex = Math.floor(Math.random() * createdDMs.ops.length);
+    const { username, _id: userId } = createdDMs.ops[randomDMIndex];
 
-    while (friendId === userId) {
-      const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-      friendId = createdUsers.ops[randomUserIndex];
-    }
+    // create player object
+    const createdPlayer = await Player.create({ playerName, playerClass, playerRace, playerLevel, playerArmorClass, playerHitPoints, username });
 
-    await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
-  }
-
-  // create thoughts
-  let createdThoughts = [];
-  for (let i = 0; i < 100; i += 1) {
-    const thoughtText = faker.lorem.words(Math.round(Math.random() * 20) + 1);
-
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username, _id: userId } = createdUsers.ops[randomUserIndex];
-
-    const createdThought = await Thought.create({ thoughtText, username });
-
-    const updatedUser = await User.updateOne(
+    // update the DM
+    const updatedDM = await DungeonMaster.updateOne(
       { _id: userId },
-      { $push: { thoughts: createdThought._id } }
+      { $push: { players: createdPlayer._id } }
     );
 
-    createdThoughts.push(createdThought);
-  }
-
-  // create reactions
-  for (let i = 0; i < 100; i += 1) {
-    const reactionBody = faker.lorem.words(Math.round(Math.random() * 20) + 1);
-
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username } = createdUsers.ops[randomUserIndex];
-
-    const randomThoughtIndex = Math.floor(Math.random() * createdThoughts.length);
-    const { _id: thoughtId } = createdThoughts[randomThoughtIndex];
-
-    await Thought.updateOne(
-      { _id: thoughtId },
-      { $push: { reactions: { reactionBody, username } } },
-      { runValidators: true }
-    );
+    // push to array
+    createdPlayers.push(createdPlayer);
   }
 
   console.log('all done!');

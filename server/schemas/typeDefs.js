@@ -1,49 +1,42 @@
-// Initiate dnd
-
-// players
-// DM
-// Monsters
-
-// DM can have many players
-
-
 // import the gql tagged template function
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type User {
+  type DungeonMaster {
     _id: ID
-    username: String
+    dungeonMaster: String
     email: String
-    friendCount: Int
-    thoughts: [Thought]
-    friends: [User]
+    players: [Player]
   }
 
-  type Thought {
+  type Player {
     _id: ID
-    thoughtText: String
-    createdAt: String
-    username: String
-    reactionCount: Int
-    reactions: [Reaction]
-  }
-
-  type Reaction {
-    _id: ID
-    reactionBody: String
-    createdAt: String
-    username: String
+    playerName: String
+    playerClass: String
+    playerRace: String
+    playerLevel: Int
+    playerArmorClass: Int
+    playerHitPoints: Int
   }
 
   type Query {
-    users: [User]
-    user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(_id: ID!): Thought
+    me: DungeonMaster
+    dungeonMasters: [DungeonMaster]
+    dungeonMaster(username: String): [DungeonMaster]
+    players: [Player]
+    player(playerName: String): [Player]
+  }
+
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addDungeonMaster(dungeonMaster: String! email: String! password: String!): Auth
+    addPlayer(playerId: ID!): DungeonMaster
+  }
+
+  type Auth {
+    token: ID!
+    dungeonMaster: DungeonMaster
   }
 `;
 
 module.exports = typeDefs;
-
-
