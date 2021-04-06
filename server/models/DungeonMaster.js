@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const DungeonMasterSchema = new Schema(
   {
-    username: {
+    dungeonMaster: {
       type: String,
       required: true,
       unique: true,
