@@ -17,20 +17,25 @@ const typeDefs = gql`
     playerLevel: Int
     playerArmorClass: Int
     playerHitPoints: Int
+    dungeonMaster: String
   }
 
   type Query {
     me: DungeonMaster
     dungeonMasters: [DungeonMaster]
-    dungeonMaster(username: String): [DungeonMaster]
-    players: [Player]
-    player(playerName: String): [Player]
+    dungeonMaster(username: String!): DungeonMaster
+    players(playerName: String): [Player]
+    player(_id: ID!): Player
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addDungeonMaster(dungeonMaster: String! email: String! password: String!): Auth
-    addPlayer(playerId: ID!): DungeonMaster
+    addDungeonMaster(
+      dungeonMaster: String!
+      email: String!
+      password: String!
+    ): Auth
+    addPlayer(playerName: String!): Player
   }
 
   type Auth {
