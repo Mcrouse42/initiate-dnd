@@ -6,8 +6,9 @@ import ApolloClient from 'apollo-boost';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Monsters from './components/Monsters';
 
-import Home from './pages/Home';
+// import Home from './pages/Home';
 
 // establish connection to the back end
 const client = new ApolloClient({
@@ -21,7 +22,7 @@ function App() {
       <div className="flex-column justify-flex-start min-100-vh">
         <Header />
         <div className="container">
-          <Home />
+          <Monsters />
         </div>
         <Footer />
       </div>
