@@ -4,7 +4,7 @@ import { searchMonsters } from '../../utils/API';
 const Monsters = () => {
   return (
         <div className="container flex-row justify-space-between-lg justify-center align-center">
-            <button onClick={() => searchMonsters}>Search Monsters</button>
+            <button onClick={searchMonsters}>Search Monsters</button>
         </div>
       
   );
