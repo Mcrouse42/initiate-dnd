@@ -6,7 +6,7 @@ import ApolloClient from 'apollo-boost';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Monsters from './components/Monsters';
+import MonsterSearch from './pages/MonsterSearch';
 
 // import Home from './pages/Home';
 
@@ -22,7 +22,7 @@ function App() {
       <div className="flex-column justify-flex-start min-100-vh">
         <Header />
         <div className="container">
-          <Monsters />
+          <MonsterSearch />
         </div>
         <Footer />
       </div>
