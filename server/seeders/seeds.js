@@ -46,6 +46,7 @@ db.once('open', async () => {
     const playerLevel = Math.floor(Math.random() * (20 - 1 + 1)) + 1; //(max - min + 1)) + min
     const playerArmorClass = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
     const playerHitPoints = Math.floor(Math.random() * (100 - 10 + 10)) + 10; //(max - min + 1)) + min
+    const playerHitPoints = Math.floor(Math.random() * (100 - 10 + 10)) + 10; //(max - min + 1)) + min
 
     // assign to a DM
     const randomDMIndex = Math.floor(Math.random() * createdDMs.ops.length);
