@@ -1,4 +1,4 @@
-const { DungeonMaster, Player, Monster } = require('../models');
+const { DungeonMaster, Player, Monster } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 
@@ -64,24 +64,6 @@ const resolvers = {
       const token = signToken(dungeonMaster);
       return { token, dungeonMaster };
     },
-    addPlayer: async (parent, args, context) => {
-      if (context.dungeonMaster) {
-        const player = await Player.create({
-          ...args,
-          dungeonMaster: context.dungeonMaster.username,
-        });
-
-        await DungeonMaster.findByIdAndUpdate(
-          { _id: context.dungeonMaster._id },
-          { $push: { players: player._id } },
-          { new: true }
-        );
-
-        return player;
-      }
-
-      throw new AuthenticationError("You need to be logged in!");
-    },
   },
 };
 
@@ -107,7 +89,6 @@ module.exports = resolvers;
 //   }
 // }
 
-
 // get one dungeon master by username (players included)
 
 // query {
@@ -127,7 +108,6 @@ module.exports = resolvers;
 //   }
 // }
 
-
 // get all players
 
 // query {
@@ -141,7 +121,6 @@ module.exports = resolvers;
 //   	playerHitPoints
 //   }
 // }
-
 
 // get one player by playerName
 // query {

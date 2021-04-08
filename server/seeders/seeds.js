@@ -6,17 +6,17 @@ const { DungeonMaster, Player, Monster } = require('../models');
 db.once('open', async () => {
   await DungeonMaster.deleteMany({});
   await Player.deleteMany({});
-  // await Monster.deleteMany({});  
+  await Monster.deleteMany({});  
 
   // create DM data
   const dmData = [];
 
   for (let i = 0; i < 5; i += 1) {
-    const username = faker.internet.userName();
+    const dungeonMaster = faker.internet.dungeonMaster();
     const email = faker.internet.email(username);
     const password = faker.internet.password();
 
-    dmData.push({ username, email, password });
+    dmData.push({ dungeonMaster, email, password });
   }
 
   const createdDMs = await DungeonMaster.collection.insertMany(dmData);
@@ -39,14 +39,14 @@ db.once('open', async () => {
 
     // assign to a DM
     const randomDMIndex = Math.floor(Math.random() * createdDMs.ops.length);
-    const { username, _id: userId } = createdDMs.ops[randomDMIndex];
+    const { dungeonMaster, _id: dungeonMasterId } = createdDMs.ops[randomDMIndex];
 
     // create player object
     const createdPlayer = await Player.create({ playerName, playerClass, playerRace, playerLevel, playerArmorClass, playerHitPoints, username });
 
     // update the DM
     const updatedDM = await DungeonMaster.updateOne(
-      { _id: userId },
+      { _id: dungeonMasterId },
       { $push: { players: createdPlayer._id } }
     );
 
