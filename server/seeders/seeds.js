@@ -5,7 +5,7 @@ const { DungeonMaster, Player, Monster } = require("../models");
 
 db.once("open", async () => {
   await DungeonMaster.deleteMany({});
-  //await DungeonMaster.collection.dropIndexes({});
+  // await DungeonMaster.collection.dropIndexes({});
   await Player.deleteMany({});
   // await Monster.deleteMany({});
 

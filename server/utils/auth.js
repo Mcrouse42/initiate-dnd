@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const secret = "mysecretsshhhhh";
-const expiration = "2h";
+const expiration = " ";
 
 module.exports = {
   signToken: function ({ dungeonMaster, email, _id }) {
