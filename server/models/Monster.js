@@ -42,32 +42,36 @@ const monsterSchema = new Schema(
       required: true,
       trim: true
     },
-    statsModifier: [
-      {
-        monsterStrengthStat: {type: Number},
-        monsterStrengthModifier: {type: Number}
-      },
-      {
-        monsterDexterityStat: {type: Number},
-        monsterDexterityModifier: {type: Number}
-      },
-      {
-        monsterConstitutionStat: {type: Number},
-        monsterConstitutionModifier: {type: Number}
-      },
-      {
-        monsterIntelligenceStat: {type: Number},
-        monsterIntelligenceModifier: {type: Number}
-      },
-      {
-        monsterWisdomStat: {type: Number},
-        monsterWisdomModifier: {type: Number}
-      },
-      {
-        monsterCharismaStat: {type: Number},
-        monsterCharismaModifier: {type: Number}
-      },
-    ],
+    monsterStrengthStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    monsterDexterityStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    monsterConstitutionStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    monsterIntelligenceStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    monsterWisdomStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    monsterCharismaStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
     monsterActions: [{
       name: {type: String},
       description: {type: String}
