@@ -1,11 +1,30 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+
+//import ThoughtList from '../components/ThoughtList';
+
+import { useQuery } from '@apollo/react-hooks';
+import { QUERY_DM } from '../utils/queries';
 
 const Profile = () => {
+  const { dungeonMaster: userParam } = useParams();
+
+  const { loading, data } = useQuery(QUERY_DM, {
+    variables: { dungeonMaster: userParam }
+  });
+
+  const dungeonMaster = data?.dungeonMaster || {};
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  
   return (
     <div>
       <div className="flex-row mb-3">
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
-          {/* Viewing <usernames>'s profile. */}
+          THIS IS THE DM PROFILE
+          {/* Viewing {dungeonMaster}'s profile. */}
         </h2>
       </div>
 
