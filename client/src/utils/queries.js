@@ -32,7 +32,7 @@ export const QUERY_PLAYER = gql`
     }
   }
 `;
-
+// this works
 export const QUERY_PLAYERS = gql`
   query {
     players {
@@ -46,6 +46,33 @@ export const QUERY_PLAYERS = gql`
     }
   }
 `;
+
+export const QUERY_DM = gql`
+  query dungeonMasters($dungeonMasters: String!) {
+    dungeonMasters(dungeonMasters: $dungeonMasters) {
+      _id
+      dungeonMaster
+      email
+      players {
+        _id
+        playerName
+        playerClass
+        playerRace
+        playerLevel
+        playerArmorClass
+        playerHitPoints
+        playerStrengthStat
+        playerDexterityStat
+        playerConstitutionStat
+        playerIntelligenceStat
+        playerWisdomStat
+        playerCharismaStat
+      }
+    }
+  }
+`;
+
+
 
 // query {
 //   dungeonMasters {

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
+import { ADD_DM } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const Signup = () => {
-  const [formState, setFormState] = useState({ username: '', email: '', password: '' });
+  const [formState, setFormState] = useState({ addDungeonMaster: '', email: '', password: '' });
+  const [addDungeonMaster, { error }] = useMutation(ADD_DM);
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -11,11 +15,22 @@ const Signup = () => {
       ...formState,
       [name]: value,
     });
+    //console.log(formState);
   };
 
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    try {
+      // execute addDungeonMaster and pass in variable data from form
+      const { data } = await addDungeonMaster({
+        variables: { ...formState }
+      });
+      Auth.login(data.addDungeonMaster.token);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -27,11 +42,11 @@ const Signup = () => {
             <form onSubmit={handleFormSubmit}>
               <input
                 className='form-input'
-                placeholder='Your username'
-                name='username'
-                type='username'
-                id='username'
-                value={formState.username}
+                placeholder='Your Dungeon Master Name'
+                name='dungeonMaster'
+                type='dungeonMaster'
+                id='dungeonMaster'
+                value={formState.dungeonMaster}
                 onChange={handleChange}
               />
               <input
@@ -56,6 +71,7 @@ const Signup = () => {
                 Submit
               </button>
             </form>
+            {error && <div>Sign up failed</div>}
           </div>
         </div>
       </div>
