@@ -46,13 +46,32 @@ db.once('open', async () => {
     const playerLevel = Math.floor(Math.random() * (20 - 1 + 1)) + 1; //(max - min + 1)) + min
     const playerArmorClass = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
     const playerHitPoints = Math.floor(Math.random() * (100 - 10 + 10)) + 10; //(max - min + 1)) + min
+    const playerStrengthStat = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
+    const playerDexterityStat = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
+    const playerConstitutionStat = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
+    const playerIntelligenceStat = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
+    const playerWisdomStat = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
+    const playerCharismaStat = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
 
     // assign to a DM
     const randomDMIndex = Math.floor(Math.random() * createdDMs.ops.length);
     const { dungeonMaster, _id: dmId } = createdDMs.ops[randomDMIndex];
 
     // create player object
-    const createdPlayer = await Player.create({ playerName, playerClass, playerRace, playerLevel, playerArmorClass, playerHitPoints, dungeonMaster });
+    const createdPlayer = await Player.create({
+      playerName,
+      playerClass,
+      playerRace,
+      playerLevel,
+      playerArmorClass,
+      playerHitPoints,
+      playerStrengthStat,
+      playerDexterityStat,
+      playerConstitutionStat,
+      playerIntelligenceStat,
+      playerWisdomStat,
+      playerCharismaStat,
+      dungeonMaster });
 
     // update the DM
     const updatedDM = await DungeonMaster.updateOne(
