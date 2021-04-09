@@ -64,24 +64,24 @@ const resolvers = {
       const token = signToken(dungeonMaster);
       return { token, dungeonMaster };
     },
-    // addPlayer: async (parent, args, context) => {
-    //   if (context.dungeonMaster) {
-    //     const player = await Player.create({
-    //       ...args,
-    //       dungeonMaster: context.DungeonMaster.dungeonMaster,
-    //     });
+    addPlayer: async (parent, args, context) => {
+      if (context.dungeonMaster) {
+        const player = await Player.create({
+          ...args,
+          dungeonMaster: context.dungeonMaster,
+        });
 
-    //     await DungeonMaster.findByIdAndUpdate(
-    //       { _id: context.dungeonMaster._id },
-    //       { $push: { players: player._id } },
-    //       { new: true }
-    //     );
+        await DungeonMaster.findByIdAndUpdate(
+          { _id: context.dungeonMaster._id },
+          { $push: { players: player._id } },
+          { new: true }
+        );
 
-    //     return player;
-    //   }
+        return player;
+      }
 
-    //   throw new AuthenticationError("You need to be logged in!");
-    // },
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 

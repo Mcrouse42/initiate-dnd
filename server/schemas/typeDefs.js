@@ -39,7 +39,7 @@ const typeDefs = gql`
       playerLevel: Int
       playerArmorClass: Int
       playerHitPoints: Int 
-    ): DungeonMaster
+    ): Player
   }
   type Auth {
     token: ID!
