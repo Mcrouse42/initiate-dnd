@@ -31,7 +31,15 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    addPlayer(playerId: ID!): DungeonMaster
+    addPlayer(
+      _id: ID
+      playerName: String!
+      playerClass: String!
+      playerRace: String!
+      playerLevel: Int
+      playerArmorClass: Int
+      playerHitPoints: Int 
+    ): DungeonMaster
   }
   type Auth {
     token: ID!
