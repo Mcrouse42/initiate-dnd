@@ -1,4 +1,4 @@
-const { DungeonMaster, Player, Monster } = require('../models');
+const { DungeonMaster, Player, Monster } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 
@@ -64,15 +64,20 @@ const resolvers = {
       const token = signToken(dungeonMaster);
       return { token, dungeonMaster };
     },
-    addPlayer: async (parent, { playerId }, context) => {
+    addPlayer: async (parent, args, context) => {
       if (context.dungeonMaster) {
-        const updatedDungeonMaster = await DungeonMaster.findOneAndUpdate(
-          { _id: context.dungeonMaster._id },
-          { $addToSet: { players: playerId } },
-          { new: true }
-        ).populate("players");
+        const player = await Player.create({
+          ...args,
+          dungeonMaster: context.dungeonMaster,
+        });
 
-        return updatedDungeonMaster;
+        await DungeonMaster.findByIdAndUpdate(
+          { _id: context.dungeonMaster._id },
+          { $push: { players: player._id } },
+          { new: true }
+        );
+
+        return player;
       }
 
       throw new AuthenticationError("You need to be logged in!");
@@ -108,7 +113,6 @@ module.exports = resolvers;
 //   }
 // }
 
-
 // get one dungeon master by username (players included)
 
 // query getSingleDM($dungeonMaster: String!) {
@@ -134,7 +138,6 @@ module.exports = resolvers;
 //   }
 // }
 
-
 // get all players
 
 // query {
@@ -155,7 +158,6 @@ module.exports = resolvers;
 //   }
 // }
 
-
 // get one player by playerName
 
 // query getSinglePlayer($playerName: String!) {
@@ -175,7 +177,9 @@ module.exports = resolvers;
 //     playerCharismaStat
 //   }
 // }
+
 // Query variables 
 // {
 //   "playerName": "Angus_Batz"
 // }
+

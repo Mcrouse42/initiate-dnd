@@ -1,13 +1,13 @@
 // Look at the book search challenge for 3rd party
-const faker = require('faker');
-const db = require('../config/connection');
-const { DungeonMaster, Player, Monster } = require('../models');
+const faker = require("faker");
+const db = require("../config/connection");
+const { DungeonMaster, Player, Monster } = require("../models");
 
-db.once('open', async () => {
+db.once("open", async () => {
   await DungeonMaster.deleteMany({});
-  //await DungeonMaster.collection.dropIndexes({});
+  // await DungeonMaster.collection.dropIndexes({});
   await Player.deleteMany({});
-  // await Monster.deleteMany({});  
+  // await Monster.deleteMany({});
 
   // create DM data
   const dmData = [];
@@ -33,12 +33,35 @@ db.once('open', async () => {
 
   // create player data
   let createdPlayers = [];
-  
+
   for (let i = 0; i < 20; i += 1) {
     // array of choices for random
-    const classes = [ "barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard" ];
-    const races = [ "dragonborn", "dwarf", "elf", "gnome", "half-elf", "halfing", "half-orc", "human", "tiefling" ];
-    
+    const classes = [
+      "barbarian",
+      "bard",
+      "cleric",
+      "druid",
+      "fighter",
+      "monk",
+      "paladin",
+      "ranger",
+      "rogue",
+      "sorcerer",
+      "warlock",
+      "wizard",
+    ];
+    const races = [
+      "dragonborn",
+      "dwarf",
+      "elf",
+      "gnome",
+      "half-elf",
+      "halfing",
+      "half-orc",
+      "human",
+      "tiefling",
+    ];
+
     // player information
     const playerName = faker.internet.userName();
     const playerClass = classes[Math.floor(Math.random() * classes.length)];
@@ -73,6 +96,7 @@ db.once('open', async () => {
       playerCharismaStat,
       dungeonMaster });
 
+
     // update the DM
     const updatedDM = await DungeonMaster.updateOne(
       { _id: dmId },
@@ -83,6 +107,6 @@ db.once('open', async () => {
     createdPlayers.push(createdPlayer);
   }
 
-  console.log('all done!');
+  console.log("all done!");
   process.exit(0);
 });

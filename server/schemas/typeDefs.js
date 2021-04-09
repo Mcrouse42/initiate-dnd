@@ -1,5 +1,5 @@
 // import the gql tagged template function
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type DungeonMaster {
@@ -8,7 +8,6 @@ const typeDefs = gql`
     email: String
     players: [Player]
   }
-
   type Player {
     _id: ID
     playerName: String
@@ -24,7 +23,6 @@ const typeDefs = gql`
     playerWisdomStat: Int
     playerCharismaStat: Int
   }
-
   type Query {
     me: DungeonMaster
     dungeonMasters: [DungeonMaster]
@@ -32,13 +30,23 @@ const typeDefs = gql`
     players: [Player]
     player(playerName: String): [Player]
   }
-
   type Mutation {
     login(email: String!, password: String!): Auth
-    addDungeonMaster(dungeonMaster: String! email: String! password: String!): Auth
-    addPlayer(playerId: ID!): DungeonMaster
+    addDungeonMaster(
+      dungeonMaster: String!
+      email: String!
+      password: String!
+    ): Auth
+    addPlayer(
+      _id: ID
+      playerName: String!
+      playerClass: String!
+      playerRace: String!
+      playerLevel: Int
+      playerArmorClass: Int
+      playerHitPoints: Int 
+    ): Player
   }
-
   type Auth {
     token: ID!
     dungeonMaster: DungeonMaster
