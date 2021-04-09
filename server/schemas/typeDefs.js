@@ -17,6 +17,12 @@ const typeDefs = gql`
     playerLevel: Int
     playerArmorClass: Int
     playerHitPoints: Int
+    playerStrengthStat: Int
+    playerDexterityStat: Int
+    playerConstitutionStat: Int
+    playerIntelligenceStat: Int
+    playerWisdomStat: Int
+    playerCharismaStat: Int
   }
 
   type Query {

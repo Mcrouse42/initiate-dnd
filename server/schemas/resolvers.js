@@ -88,7 +88,7 @@ module.exports = resolvers;
 // query {
 //   dungeonMasters {
 //     _id
-//     username
+//     dungeonMaster
 //     email
 //     players {
 //       _id
@@ -98,6 +98,12 @@ module.exports = resolvers;
 //   		playerLevel
 //   		playerArmorClass
 //   		playerHitPoints
+//       playerStrengthStat
+//     	playerDexterityStat
+//     	playerConstitutionStat
+//     	playerIntelligenceStat
+//     	playerWisdomStat
+//     	playerCharismaStat
 //     }
 //   }
 // }
@@ -105,19 +111,25 @@ module.exports = resolvers;
 
 // get one dungeon master by username (players included)
 
-// query {
-//   dungeonMaster(username: "Leopold.Batz95") {
+// query getSingleDM($dungeonMaster: String!) {
+//   dungeonMaster(dungeonMaster: $dungeonMaster) {
 //     _id
-//     username
+//     dungeonMaster
 //     email
 //     players {
 //       _id
 //       playerName
-//   		playerClass
-//   		playerRace
-//   		playerLevel
-//   		playerArmorClass
-//   		playerHitPoints
+//   		 playerClass
+//   		 playerRace
+//   	 	 playerLevel
+//   	 	 playerArmorClass
+//   		 playerHitPoints
+//       playerStrengthStat
+//     	 playerDexterityStat
+//     	playerConstitutionStat
+//     	playerIntelligenceStat
+//     	playerWisdomStat
+//     	playerCharismaStat
 //     }
 //   }
 // }
@@ -128,19 +140,26 @@ module.exports = resolvers;
 // query {
 //   players {
 //     _id
-//   	playerName
+//     playerName
 //   	playerClass
 //   	playerRace
 //   	playerLevel
 //   	playerArmorClass
 //   	playerHitPoints
+//     playerStrengthStat
+//     playerDexterityStat
+//     playerConstitutionStat
+//     playerIntelligenceStat
+//     playerWisdomStat
+//     playerCharismaStat
 //   }
 // }
 
 
 // get one player by playerName
-// query {
-//   player(playerName: "Kacey_Botsford") {
+
+// query getSinglePlayer($playerName: String!) {
+//   player(playerName: $playerName) {
 //     _id
 //     playerName
 //   	playerClass
@@ -148,5 +167,15 @@ module.exports = resolvers;
 //   	playerLevel
 //   	playerArmorClass
 //   	playerHitPoints
+//     playerStrengthStat
+//     playerDexterityStat
+//     playerConstitutionStat
+//     playerIntelligenceStat
+//     playerWisdomStat
+//     playerCharismaStat
 //   }
+// }
+// Query variables 
+// {
+//   "playerName": "Angus_Batz"
 // }
