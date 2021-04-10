@@ -1,4 +1,4 @@
-const { DungeonMaster, Player, Monster } = require('../models');
+const { DungeonMaster, Player, Monster } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 
@@ -64,15 +64,20 @@ const resolvers = {
       const token = signToken(dungeonMaster);
       return { token, dungeonMaster };
     },
-    addPlayer: async (parent, { playerId }, context) => {
+    addPlayer: async (parent, args, context) => {
       if (context.dungeonMaster) {
-        const updatedDungeonMaster = await DungeonMaster.findOneAndUpdate(
-          { _id: context.dungeonMaster._id },
-          { $addToSet: { players: playerId } },
-          { new: true }
-        ).populate("players");
+        const player = await Player.create({
+          ...args,
+          dungeonMaster: context.dungeonMaster,
+        });
 
-        return updatedDungeonMaster;
+        await DungeonMaster.findByIdAndUpdate(
+          { _id: context.dungeonMaster._id },
+          { $push: { players: player._id } },
+          { new: true }
+        );
+
+        return player;
       }
 
       throw new AuthenticationError("You need to be logged in!");
@@ -88,7 +93,7 @@ module.exports = resolvers;
 // query {
 //   dungeonMasters {
 //     _id
-//     username
+//     dungeonMaster
 //     email
 //     players {
 //       _id
@@ -98,49 +103,45 @@ module.exports = resolvers;
 //   		playerLevel
 //   		playerArmorClass
 //   		playerHitPoints
+//       playerStrengthStat
+//     	playerDexterityStat
+//     	playerConstitutionStat
+//     	playerIntelligenceStat
+//     	playerWisdomStat
+//     	playerCharismaStat
 //     }
 //   }
 // }
-
 
 // get one dungeon master by username (players included)
 
-// query {
-//   dungeonMaster(username: "Leopold.Batz95") {
+// query getSingleDM($dungeonMaster: String!) {
+//   dungeonMaster(dungeonMaster: $dungeonMaster) {
 //     _id
-//     username
+//     dungeonMaster
 //     email
 //     players {
 //       _id
 //       playerName
-//   		playerClass
-//   		playerRace
-//   		playerLevel
-//   		playerArmorClass
-//   		playerHitPoints
+//   		 playerClass
+//   		 playerRace
+//   	 	 playerLevel
+//   	 	 playerArmorClass
+//   		 playerHitPoints
+//       playerStrengthStat
+//     	 playerDexterityStat
+//     	playerConstitutionStat
+//     	playerIntelligenceStat
+//     	playerWisdomStat
+//     	playerCharismaStat
 //     }
 //   }
 // }
-
 
 // get all players
 
 // query {
 //   players {
-//     _id
-//   	playerName
-//   	playerClass
-//   	playerRace
-//   	playerLevel
-//   	playerArmorClass
-//   	playerHitPoints
-//   }
-// }
-
-
-// get one player by playerName
-// query {
-//   player(playerName: "Kacey_Botsford") {
 //     _id
 //     playerName
 //   	playerClass
@@ -148,5 +149,37 @@ module.exports = resolvers;
 //   	playerLevel
 //   	playerArmorClass
 //   	playerHitPoints
+//     playerStrengthStat
+//     playerDexterityStat
+//     playerConstitutionStat
+//     playerIntelligenceStat
+//     playerWisdomStat
+//     playerCharismaStat
 //   }
 // }
+
+// get one player by playerName
+
+// query getSinglePlayer($playerName: String!) {
+//   player(playerName: $playerName) {
+//     _id
+//     playerName
+//   	playerClass
+//   	playerRace
+//   	playerLevel
+//   	playerArmorClass
+//   	playerHitPoints
+//     playerStrengthStat
+//     playerDexterityStat
+//     playerConstitutionStat
+//     playerIntelligenceStat
+//     playerWisdomStat
+//     playerCharismaStat
+//   }
+// }
+
+// Query variables 
+// {
+//   "playerName": "Angus_Batz"
+// }
+

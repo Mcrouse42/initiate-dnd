@@ -1,0 +1,25 @@
+@import './variables';
+@import './mixins';
+@import './header';
+@import './footer';
+
+
+* {
+    box-sizing: border-box;
+}
+  
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 20px;
+    color: $black;
+    background-color: $lightGrey;
+}

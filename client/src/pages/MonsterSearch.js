@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { searchMonsterApi } from '../utils/API';
 import { Form, Button, Container, Card } from 'react-bootstrap';
-import { useMutation } from '@apollo/react-hooks';
-import { saveMonsterNames, getSavedMonsterNames } from '../utils/localStorage';
+// import { useMutation } from '@apollo/react-hooks';
+// import { saveMonsterNames, getSavedMonsterNames } from '../utils/localStorage';
 
 // mutation not created yet 
-import { SAVE_MONSTER } from '../utils/mutations';
+// import { SAVE_MONSTER } from '../utils/mutations';
 
 // auth not done yet
 // import Auth from '../utils/auth';
@@ -42,14 +42,18 @@ const MonsterSearch = () => {
                 throw new Error('something went wrong!');
             }
 
-            const { items } = await response.json();
+            const { results } = await response.json();
+            const monster = results[0];
+            console.log(results);
+            console.log(monster);
+            console.log(monster.name);
 
-            const monsterData = items.map((monster) => ({
+            const monsterData = results.map((monster) => ({
                 monsterName: monster.name,
                 monsterSize: monster.size,
-                monsterTyep: monster.type,
+                monsterType: monster.type,
                 monsterAlignment: monster.alignment,
-                monsterSpeed: monster.speed,
+                // monsterSpeed: monster.speed,
                 monsterChallenge: monster.challenge_rating,
                 monsterArmorClass: monster.armor_class,
                 monsterHitPoints: monster.hit_points,
@@ -59,12 +63,13 @@ const MonsterSearch = () => {
                 monsterIntelligenceStat: monster.intelligence,
                 monsterWisdomStat: monster.wisdom,
                 monsterCharismaStat: monster.charisma,
-                monsterActions: monster.actions
+                // monsterActions: monster.actions
             }));
 
             setSearchedMonsters(monsterData);
             setSearchInput('');
-        } catch (err) {
+            console.log(monsterData);
+            } catch (err) {
             console.error(err);
         };
     }
@@ -119,11 +124,11 @@ const MonsterSearch = () => {
                             <Card.Body>
                                 <Card.Title>{monster.monsterName}</Card.Title>
                                 <Card.Text>
-                                    Size: {monster.monsterSize}
+                                    Size: {monster.monsterSize}{"\n"}
                                     Type: {monster.monsterType}
                                     Alignment: {monster.monsterAlignment}
-                                    Speed: {monster.monsterSpeed}
-                                    Challenge: {monster.monster.Challenge}
+                                    {/* Speed: {monster.monsterSpeed} */}
+                                    Challenge: {monster.monsterChallenge}
                                     Armor Class: {monster.monsterArmorClass}
                                     Hit Points: {monster.monsterHitPoints}
                                     Strength: {monster.monsterStrengthStats}
@@ -131,7 +136,7 @@ const MonsterSearch = () => {
                                     Constitution: {monster.monsterConstitutionStat}
                                     Intelligence: {monster.monsterIntelligenceStat}
                                     Charisma: {monster.monsterCharismaStat}
-                                    Actions: {monster.monsterActions}
+                                    {/* Actions: {monster.monsterActions} */}
                                 </Card.Text>
                                 {/* {Auth.loggedIn() && (
                                     <Button
