@@ -1,4 +1,5 @@
 import React from 'react';
+import PlayerList from "../components/PlayerList";
 import { Redirect, useParams } from 'react-router-dom';
 
 //import ThoughtList from '../components/ThoughtList';
@@ -50,21 +51,13 @@ const Profile = () => {
 
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">
-          {/* PRINT Player List (link to Matt's page)  */}
-          {dungeonMaster.players.map(player => (
-            <div className="card mb-3">
-              <h2>{player.playerName}</h2>
-              <p>Player Race: {player.playerRace}</p>
-              <p>Player Class: {player.playerClass}</p>
-              <p>Player Level: {player.playerLevel}</p>
-              <p>Player AC: {player.playerArmorClass}</p>
-              <p>Player HP: {player.playerHitPoints}</p>
-            </div>
-          ))}
+          <PlayerList
+            players={dungeonMaster.players}
+            title={`${dungeonMaster.dungeonMaster}'s player...`}
+          />
+          </div>
         </div>
-
       </div>
-    </div>
   );
 };
 

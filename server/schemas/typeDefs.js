@@ -44,7 +44,13 @@ const typeDefs = gql`
       playerRace: String!
       playerLevel: Int
       playerArmorClass: Int
-      playerHitPoints: Int 
+      playerHitPoints: Int
+      playerStrengthStat: Int
+      playerDexterityStat: Int
+      playerConstitutionStat: Int
+      playerIntelligenceStat: Int
+      playerWisdomStat: Int
+      playerCharismaStat: Int
     ): Player
   }
   type Auth {
