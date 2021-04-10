@@ -48,8 +48,8 @@ export const QUERY_PLAYERS = gql`
 `;
 
 export const QUERY_DM = gql`
-  query dungeonMasters($dungeonMasters: String!) {
-    dungeonMasters(dungeonMasters: $dungeonMasters) {
+  query dungeonMasters($dungeonMaster: String) {
+    dungeonMasters(dungeonMaster: $dungeonMaster) {
       _id
       dungeonMaster
       email
@@ -71,6 +71,56 @@ export const QUERY_DM = gql`
     }
   }
 `;
+
+
+export const QUERY_ME = gql`
+  {
+    me {
+      _id
+      dungeonMaster
+      email
+      players {
+        _id
+        playerName
+        playerClass
+        playerRace
+        playerLevel
+        playerArmorClass
+        playerHitPoints
+      }
+    }
+  }
+`;
+
+//   query dungeonMasters($dungeonMaster: String) {
+//     dungeonMasters(dungeonMaster: $dungeonMaster) {
+//       _id
+//       dungeonMaster
+//       email
+//       players {
+//         _id
+//         playerName
+//         playerClass
+//         playerRace
+//         playerLevel
+//         playerArmorClass
+//         playerHitPoints
+//         playerStrengthStat
+//         playerDexterityStat
+//         playerConstitutionStat
+//         playerIntelligenceStat
+//         playerWisdomStat
+//         playerCharismaStat
+//       }
+//     }
+//   }
+
+// me {
+//   _id
+//   dungeonMaster
+//   email
+// }
+// }
 
 
 
