@@ -87,6 +87,12 @@ export const QUERY_ME = gql`
         playerLevel
         playerArmorClass
         playerHitPoints
+        playerStrengthStat
+        playerDexterityStat
+        playerConstitutionStat
+        playerIntelligenceStat
+        playerWisdomStat
+        playerCharismaStat
       }
     }
   }

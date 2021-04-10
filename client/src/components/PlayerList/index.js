@@ -34,6 +34,12 @@ const PlayerList = ({ players, title }) => {
                 <p>Player Level: {player.playerLevel}</p>
                 <p>Player AC: {player.playerArmorClass}</p>
                 <p>Player HP: {player.playerHitPoints}</p>
+                <p>Player STR: {player.playerStrengthStat}</p>
+                <p>Player DEX: {player.playerDexterityStat}</p>
+                <p>Player CON: {player.playerConstitutionStat}</p>
+                <p>Player INT: {player.playerIntelligenceStat}</p>
+                <p>Player WIS: {player.playerWisdomStat}</p>
+                <p>Player CHA: {player.playerCharismaStat}</p>
               </div>
             </div>
           </div>
