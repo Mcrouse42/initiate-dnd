@@ -24,7 +24,8 @@
   "homepage": "https://github.com/RaeStichter/initiate-dnd#readme",
   "dependencies": {
     "graphql": "^15.5.0",
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "node-sass": "^5.0.0"
   },
   "devDependencies": {
     "concurrently": "^6.0.0"

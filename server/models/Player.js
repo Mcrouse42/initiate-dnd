@@ -32,37 +32,37 @@ const playerSchema = new Schema(
       type: Number,
       required: true,
       trim: true
-    }
-    // playerStrengthStat: {
-    //   type: Number,
-    //   required: true,
-    //   trim: true
-    // },
-    // playerDexterityStat: {
-    //   type: Number,
-    //   required: true,
-    //   trim: true
-    // },
-    // playerConstitutionStat: {
-    //   type: Number,
-    //   required: true,
-    //   trim: true
-    // },
-    // playerIntelligenceStat: {
-    //   type: Number,
-    //   required: true,
-    //   trim: true
-    // },
-    // playerWisdomStat: {
-    //   type: Number,
-    //   required: true,
-    //   trim: true
-    // },
-    // playerCharismaStat: {
-    //   type: Number,
-    //   required: true,
-    //   trim: true
-    // },
+    },
+    playerStrengthStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    playerDexterityStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    playerConstitutionStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    playerIntelligenceStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    playerWisdomStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    playerCharismaStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
   },
   {
     toJSON: {

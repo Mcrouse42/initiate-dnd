@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const PlayerList = ({ Player }) => {
+const PlayerList = ({ players, title }) => {
   if (!players.length) {
     return <h3>No Players yet</h3>;
   }
@@ -10,7 +10,7 @@ const PlayerList = ({ Player }) => {
     <div>
       <h3>Player List</h3>
       {players &&
-        players.map((thought) => (
+        players.map((player) => (
           <div key={player._id} className="card mb-3">
             <p className="card-header">
               <Link
@@ -25,8 +25,16 @@ const PlayerList = ({ Player }) => {
 
             <div className="card-body">
               <Link to={`/player/${player._id}`}>
-                <p>{player.playerName}</p>
+                {/* <p>{player.playerName}</p> */}
               </Link>
+              <div className="card mb-3">
+                <h2>{player.playerName}</h2>
+                <p>Player Race: {player.playerRace}</p>
+                <p>Player Class: {player.playerClass}</p>
+                <p>Player Level: {player.playerLevel}</p>
+                <p>Player AC: {player.playerArmorClass}</p>
+                <p>Player HP: {player.playerHitPoints}</p>
+              </div>
             </div>
           </div>
         ))}
@@ -34,4 +42,4 @@ const PlayerList = ({ Player }) => {
   );
 };
 
-export default ThoughtList;
+export default PlayerList;
