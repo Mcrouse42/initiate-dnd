@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getPlayerStatModifier } from '../../utils/getStatMod';
 
 const PlayerList = ({ players, title }) => {
   if (!players.length) {
     return <h3>No Players yet</h3>;
   }
+
+  // send all players data to function which will take the stats and send back the stats plus the modifiers
+  getPlayerStatModifier(players);
 
   return (
     <div>
