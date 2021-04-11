@@ -2,7 +2,7 @@ import React from 'react';
 import PlayerList from "../components/PlayerList";
 import { Redirect, useParams } from 'react-router-dom';
 
-//import ThoughtList from '../components/ThoughtList';
+import PlayerForm from '../components/PlayerForm';
 
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_DM, QUERY_ME } from '../utils/queries';
@@ -19,7 +19,7 @@ const Profile = () => {
   //console.log("data.me", data.me);
 
   const dungeonMaster = data?.me || data?.dungeonMaster || {};
-  console.log(dungeonMaster);
+  //console.log(dungeonMaster);
 
   // redirect to personal profile page if username is the logged-in user's
   if (Auth.loggedIn() && Auth.getProfile().data.dungeonMaster === userParam) {
@@ -57,7 +57,9 @@ const Profile = () => {
           />
           </div>
         </div>
+        <div className="mb-3"><PlayerForm dungeonMaster={dungeonMaster._id} /></div>
       </div>
+  
   );
 };
 

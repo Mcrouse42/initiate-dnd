@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getPlayerStatModifier } from '../../utils/getStatMod';
+//import { getPlayerStatModifier } from '../../utils/getStatMod';
 
 const PlayerList = ({ players, title }) => {
   if (!players.length) {
@@ -8,7 +8,7 @@ const PlayerList = ({ players, title }) => {
   }
 
   // send all players data to function which will take the stats and send back the stats plus the modifiers
-  getPlayerStatModifier(players);
+  //getPlayerStatModifier(players);
 
   return (
     <div>
