@@ -16,6 +16,7 @@ import NoMatch from './pages/NoMatch';
 //import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import BattlePrep from './pages/BattlePrep';
 
 // import Home from './pages/Home';
 
@@ -46,6 +47,7 @@ function App() {
               <Route exact path ="/login" component={Login} />
               <Route exact path ="/signup" component={Signup} />
               <Route exact path="/profile/:dungeonMaster?" component={Profile} />
+              <Route exact path="/battleprep" component={BattlePrep}/>
 
               <Route component={NoMatch} />
             </Switch>

@@ -24,3 +24,23 @@ export const ADD_DM = gql`
         }
     }
 `;
+
+export const ADD_PLAYER = gql`
+  mutation addPlayer($playerName: String!, $playerClass: String!, $playerRace: String!, $playerLevel: Int, $playerArmorClass: Int, $playerHitPoints: Int, $playerStrengthStat: Int, $playerDexterityStat: Int, $playerConstitutionStat: Int, $playerIntelligenceStat: Int, $playerWisdomStat: Int, $playerCharismaStat: Int ) {
+    addPlayer (playerName: $playerName, playerClass: $playerClass, playerRace: $playerRace, playerLevel: $playerLevel, playerArmorClass: $playerArmorClass, playerHitPoints: $playerHitPoints, playerStrengthStat: $playerStrengthStat, playerDexterityStat: $playerDexterityStat, playerConstitutionStat: $playerConstitutionStat, playerIntelligenceStat: $playerIntelligenceStat, playerWisdomStat: $playerWisdomStat, playerCharismaStat: $playerCharismaStat ) {
+      _id
+      playerName
+      playerClass
+      playerRace
+      playerLevel
+      playerArmorClass
+      playerHitPoints
+      playerStrengthStat
+      playerDexterityStat
+      playerConstitutionStat
+      playerIntelligenceStat
+      playerWisdomStat
+      playerCharismaStat
+    }
+  }
+`;

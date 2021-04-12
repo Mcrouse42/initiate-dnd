@@ -2,7 +2,8 @@
 
 :root {
   --primary: #497573;
-  --secondary: #000000;
+  /* Sarah I altered --secondary from black to a random color */
+  --secondary: #38a034; 
   --tertiary: #b2c2c1;
   --quatrinary: #d1d1d1;
   --light: #b7990d;

@@ -55,7 +55,7 @@ export const getPlayerStatModifier = (players) => {
 
             // math to find the modifier
             const modifierVal = Math.floor((currentStat - 10)/2);
-            //console.log(modifierVal);
+            console.log(modifierVal);
             //console.log(currentStat);
 
             // var testmod = modifierArray.filter(function( obj ) {
@@ -76,12 +76,14 @@ export const getPlayerStatModifier = (players) => {
             
             //const final = (currentStat + modifierValString);
             //console.log(currentStat);
-            const final = (currentStat + " " + "[" +  modifierVal + "]");
+            //const final = (currentStat + " " + "[" +  modifierVal + "]");
+            const final = `${currentStat} 10`;
             //console.log(final);
 
             modifiedStat.push(final);
 
         });
+        console.log(modifiedStat[0]);
 
         player.playerStrengthStat = modifiedStat[0];
         player.playerDexterityStat = modifiedStat[1];
