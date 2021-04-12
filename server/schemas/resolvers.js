@@ -82,6 +82,20 @@ const resolvers = {
 
       throw new AuthenticationError("You need to be logged in!");
     },
+    saveMonster: async (parent, { monsterData }, context) => {
+      if (context.dungeonMaster) {
+        const updatedDungeonMaster = await DungeonMaster.findOneAndUpdate(
+          { _id: context.dungeonMaster._id },
+          // if error - look at schema, may want to add monster ID from mongoose instead?
+          // { $addToSet: { monsters: _id} },
+          { $addToSet: { monsters: monsterData } },
+          // use populate when you want to get more data
+          { new: true }
+        );
+        return updatedDungeonMaster;
+      }
+      throw new AuthenticationError('You need to be logged in to save a monster');
+    }
   },
 };
 

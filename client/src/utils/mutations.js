@@ -24,3 +24,59 @@ export const ADD_DM = gql`
         }
     }
 `;
+
+// zk: not sure if this is 100% correct
+// removed actions
+export const SAVE_MONSTER = gql`
+    mutation saveMonster($monsterData: monsterInput!) {
+      saveMonster(monsterData: $monsterData) {
+        _id
+        dungeonMaster
+        email
+        monsters {
+          monsterName
+          monsterSize
+          monsterType
+          monsterAlignment
+          monsterSpeed
+          monsterChallenge
+          monsterArmorClass
+          monsterHitPoints
+          monsterStrengthStat
+          monsterDexterityStat
+          monsterConstitutionStat
+          monsterIntelligenceStat
+          monsterWisdomStat
+          monsterCharismaStat
+        }
+      }
+    }
+  `;
+
+// // zk: not sure if this is 100% correct
+//   export const REMOVE_MONSTER = gql`
+//     mutation removeMonster($monsterName: String!) {
+//       removeMonster(monsterName: $monsterName) {
+//         _id
+//         dungeonMaster
+//         email
+//         monsters {
+//           monsterName
+//           monsterSize
+//           monsterType
+//           monsterAlignment
+//           monsterSpeed
+//           monsterChallenge
+//           monsterArmorClass
+//           monsterHitPoints
+//           monsterStrengthStat
+//           monsterDexterityStat
+//           monsterConstitutionStat
+//           monsterIntelligenceStat
+//           monsterWisdomStat
+//           monsterCharismaStat
+//           monsterActions
+//         }
+//       }
+//     }
+//   `;

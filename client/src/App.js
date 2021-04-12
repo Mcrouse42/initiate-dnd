@@ -13,7 +13,6 @@ import Footer from './components/Footer';
 import MonsterSearch from './pages/MonsterSearch';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
-//import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 

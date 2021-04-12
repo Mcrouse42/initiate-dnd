@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { searchMonsterApi } from '../utils/API';
-import { Form, Button, Container, Card } from 'react-bootstrap';
-// import { useMutation } from '@apollo/react-hooks';
-// import { saveMonsterNames, getSavedMonsterNames } from '../utils/localStorage';
+import { Form, Button, Container, Card, CardDeck, ListGroup, Table } from 'react-bootstrap';
+import { useMutation } from '@apollo/react-hooks';
+import { saveMonsterNames, getSavedMonsterNames } from '../utils/localStorage';
 
 // mutation not created yet 
-// import { SAVE_MONSTER } from '../utils/mutations';
+import { SAVE_MONSTER } from '../utils/mutations';
 
 // auth not done yet
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 
 const MonsterSearch = () => {
     // create state for holding returned monster api data
@@ -18,14 +18,15 @@ const MonsterSearch = () => {
     const [searchInput, setSearchInput] = useState('');
 
     // create state to hold saved monsterName values
-    // const [savedMonsterNames, setSavedMonsterNames] = useState(getSavedMonsterNames());
+    const [savedMonsterNames, setSavedMonsterNames] = useState(getSavedMonsterNames());
 
-    // const [saveMonster, { error }] = useMutation(SAVE_MONSTER);
+    // mutation not created yet 
+    const [saveMonster, { error }] = useMutation(SAVE_MONSTER);
 
     // set up useEffect hook to save `savedMonsterNames` list to localStorage on component unmount
-    // useEffect(() => {
-    //     return () => saveMonsterNames(savedMonsterNames);
-    // });
+    useEffect(() => {
+        return () => saveMonsterNames(savedMonsterNames);
+    });
 
     // create method to search for monsters and set state on form submit
     const handleFormSubmit = async (event) => {
@@ -45,60 +46,61 @@ const MonsterSearch = () => {
             const { results } = await response.json();
             const monster = results[0];
             console.log(results);
-            console.log(monster);
-            console.log(monster.name);
 
             const monsterData = results.map((monster) => ({
                 monsterName: monster.name,
                 monsterSize: monster.size,
                 monsterType: monster.type,
                 monsterAlignment: monster.alignment,
-                // monsterSpeed: monster.speed,
-                monsterChallenge: monster.challenge_rating,
+                // speed is an object - using only walk for now
+                monsterSpeed: monster.speed.walk,
+                monsterChallenge: parseInt(monster.challenge_rating),
                 monsterArmorClass: monster.armor_class,
                 monsterHitPoints: monster.hit_points,
                 monsterStrengthStat: monster.strength,
                 monsterDexterityStat: monster.dexterity,
-                monsterConstitutionStat: monster.constituion,
+                monsterConstitutionStat: monster.constitution,
                 monsterIntelligenceStat: monster.intelligence,
                 monsterWisdomStat: monster.wisdom,
                 monsterCharismaStat: monster.charisma,
-                // monsterActions: monster.actions
+                // monsterActions: monster.actions.map((actions) => ({
+                //     actionName: actions?.name,
+                //     actionDesc: actions?.desc,
+                //     actionAttack: actions?.attack_bonus,
+                //     actionDamageDice: actions?.damage_dice,
+                //     actionDamageBonus: actions?.damage_bonus
+                // }))
             }));
 
             setSearchedMonsters(monsterData);
-            setSearchInput('');
             console.log(monsterData);
+            setSearchInput('');
             } catch (err) {
             console.error(err);
         };
     }
 
     // function to handle saving monster to our db
-    // const handleSaveMonster = async (monsterName) => {
-    //     // find the book in 'searchedMonsters' state by the matching name
-    //     const monsterToSave = searchedMonsters.find((monster) => monster.monsterName === monsterName);
+    const handleSaveMonster = async (monsterName) => {
+        // find the monster in 'searchedMonsters' state by the matching name
+        const monsterToSave = searchedMonsters.find((monster) => monster.monsterName === monsterName);
+        console.log(monsterToSave);
 
         // get token
-        // const token = Auth.loggedIn() ? Auth.getToken() : null;
-        //     if (!token) {
-        //         return false;
-        //     }
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+            if (!token) {
+                return false;
+            }
 
-        //     try {
-        //         const { data } = await saveMonster( {variables: { monsterData: { monsterToSave } } } );
+            try {
+                const { data } = await saveMonster( { variables: { monsterData: {...monsterToSave } } } );
 
-        //         // if monster successfully saves to user's account, save monster name to state
-        //         setSavedMonsterNames([...savedMonsterNames, monsterToSave.monsterName]);
-        //     } catch (err) {
-        //         console.error(err);
-        //     }
-        // };
-
-        // else {
-            // searchMonsterApi(searchInput);
-            // setSearchInput('');
-        // }
+                // if monster successfully saves to user's account, save monster name to state
+                setSavedMonsterNames([...savedMonsterNames, monsterToSave.monsterName]);
+            } catch (err) {
+                console.error(err);
+            }
+        };
 
   return (
         <div className="container flex-row justify-space-between-lg justify-center align-center">
@@ -117,28 +119,53 @@ const MonsterSearch = () => {
                 </Button>
             </Form>
 
-            <Container>
-                {searchedMonsters.map((monster) => {
+            <CardDeck>
+                {searchedMonsters.map((monster, index) => {
                     return (
                         <Card key={monster.monsterName}>
                             <Card.Body>
                                 <Card.Title>{monster.monsterName}</Card.Title>
                                 <Card.Text>
-                                    Size: {monster.monsterSize}{"\n"}
-                                    Type: {monster.monsterType}
-                                    Alignment: {monster.monsterAlignment}
-                                    {/* Speed: {monster.monsterSpeed} */}
-                                    Challenge: {monster.monsterChallenge}
-                                    Armor Class: {monster.monsterArmorClass}
-                                    Hit Points: {monster.monsterHitPoints}
-                                    Strength: {monster.monsterStrengthStats}
-                                    Dexterity: {monster.monsterDexterity}
-                                    Constitution: {monster.monsterConstitutionStat}
-                                    Intelligence: {monster.monsterIntelligenceStat}
-                                    Charisma: {monster.monsterCharismaStat}
-                                    {/* Actions: {monster.monsterActions} */}
+                                    <ListGroup key={`monster-stats-${index}`}>
+                                    <ListGroup.Item>Size: {monster.monsterSize}</ListGroup.Item>
+                                    <ListGroup.Item>Type: {monster.monsterType}</ListGroup.Item>
+                                    <ListGroup.Item>Alignment: {monster.monsterAlignment}</ListGroup.Item>
+                                    <ListGroup.Item>Walking Speed: {monster.monsterSpeed}</ListGroup.Item>
+                                    <ListGroup.Item>Challenge: {monster.monsterChallenge}</ListGroup.Item>
+                                    <ListGroup.Item>Armor Class: {monster.monsterArmorClass}</ListGroup.Item>
+                                    <ListGroup.Item>Hit Points: {monster.monsterHitPoints}</ListGroup.Item>
+                                    <ListGroup.Item>Strength: {monster.monsterStrengthStats}</ListGroup.Item>
+                                    <ListGroup.Item>Dexterity: {monster.monsterDexterity}</ListGroup.Item>
+                                    <ListGroup.Item>Constitution: {monster.monsterConstitutionStat}</ListGroup.Item>
+                                    <ListGroup.Item>Intelligence: {monster.monsterIntelligenceStat}</ListGroup.Item>
+                                    <ListGroup.Item>Charisma: {monster.monsterCharismaStat}</ListGroup.Item>
+                                    </ListGroup>
                                 </Card.Text>
-                                {/* {Auth.loggedIn() && (
+                                {/* <Table bordered size="sm">
+                                    <thead>
+                                        <tr>
+                                        <th>Action</th>
+                                        <th>Description</th>
+                                        <th>Attack Bonus</th>
+                                        <th>Damange Dice</th>
+                                        <th>Damage Bonus</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {monster.monsterActions.map((action) => {
+                                        return (
+                                            <tr>
+                                            <td>{action.actionName}</td>
+                                            <td>{action.actionDesc}</td>
+                                            <td>{action.actionAttack}</td>
+                                            <td>{action.actionDamageDice}</td>
+                                            <td>{action.actionDamageBonus}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                    </tbody>
+                                </Table> */}
+                                {Auth.loggedIn() && (
                                     <Button
                                     disabled={savedMonsterNames?.some((savedMonsterName) => savedMonsterName === monster.monsterName)}
                                     onClick={() => handleSaveMonster(monster.monsterName)}>
@@ -146,12 +173,12 @@ const MonsterSearch = () => {
                                         ? 'This monster has already been saved!'
                                         : 'Save this Monster!'}
                                     </Button>
-                                )} */}
+                                )}
                             </Card.Body>
                         </Card>
                     )
                 })}
-            </Container>
+            </CardDeck>
 
         </div>      
   );

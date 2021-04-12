@@ -1,5 +1,7 @@
 import gql from 'graphql-tag';
 
+// zk: i think we need a query for getting saved monsters
+
 export const QUERY_DMS = gql`
   query dungeonMasters($dungeonMasters: String) {
     dungeonMasters(dungeonMasters: $dungeonMasters) {

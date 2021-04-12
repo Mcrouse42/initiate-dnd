@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const monsterSchema = require('./Monster');
 
 const DungeonMasterSchema = new Schema(
   {
@@ -26,12 +27,13 @@ const DungeonMasterSchema = new Schema(
         ref: 'Player'
       }
     ],
-    monsters: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Monster'
-      }
-    ]
+    monsters: [monsterSchema]
+      // [
+      // {
+      //   type: Schema.Types.ObjectId,
+      //   ref: 'Monster'
+      // }
+    // ]
   },
   {
     toJSON: {

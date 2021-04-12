@@ -23,10 +23,13 @@ const monsterSchema = new Schema(
       required: true,
       trim: true
     },
-    monsterSpeed: [{
-      speedType: {type: String},
-      speedValue: {type: String}
-    }],
+    // changing speed to just walking speed for now
+    monsterSpeed: {
+      type: Number,
+      trim: true
+      // speedType: {type: String},
+      // speedValue: {type: String}
+    },
     monsterChallenge: {
       type: Number,
       required: true,
@@ -73,8 +76,11 @@ const monsterSchema = new Schema(
       trim: true
     },
     monsterActions: [{
-      name: {type: String},
-      description: {type: String}
+      actionName: {type: String},
+      actionDesc: {type: String},
+      actionAttack: {type: Number},
+      actionDamageDice: {type: String},
+      actionDamageBonus: {type: Number}
     }]
   },
   {
@@ -84,6 +90,6 @@ const monsterSchema = new Schema(
   }
 );
 
-const Monster = model('Monster', monsterSchema);
+// const Monster = model('Monster', monsterSchema);
 
-module.exports = Monster;
+module.exports = monsterSchema;
