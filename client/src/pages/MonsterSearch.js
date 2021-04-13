@@ -57,8 +57,8 @@ const MonsterSearch = () => {
                 monsterChallenge: parseInt(monster.challenge_rating),
                 monsterArmorClass: monster.armor_class,
                 monsterHitPoints: monster.hit_points,
-                monsterStrengthStat: monster.strength,
-                monsterDexterityStat: monster.dexterity,
+                monsterStrengthStat: parseInt(monster.strength),
+                monsterDexterityStat: parseInt(monster.dexterity),
                 monsterConstitutionStat: monster.constitution,
                 monsterIntelligenceStat: monster.intelligence,
                 monsterWisdomStat: monster.wisdom,
@@ -134,8 +134,8 @@ const MonsterSearch = () => {
                                     <ListGroup.Item>Challenge: {monster.monsterChallenge}</ListGroup.Item>
                                     <ListGroup.Item>Armor Class: {monster.monsterArmorClass}</ListGroup.Item>
                                     <ListGroup.Item>Hit Points: {monster.monsterHitPoints}</ListGroup.Item>
-                                    <ListGroup.Item>Strength: {monster.monsterStrengthStats}</ListGroup.Item>
-                                    <ListGroup.Item>Dexterity: {monster.monsterDexterity}</ListGroup.Item>
+                                    <ListGroup.Item>Strength: {monster.monsterStrengthStat}</ListGroup.Item>
+                                    <ListGroup.Item>Dexterity: {monster.monsterDexterityStat}</ListGroup.Item>
                                     <ListGroup.Item>Constitution: {monster.monsterConstitutionStat}</ListGroup.Item>
                                     <ListGroup.Item>Intelligence: {monster.monsterIntelligenceStat}</ListGroup.Item>
                                     <ListGroup.Item>Charisma: {monster.monsterCharismaStat}</ListGroup.Item>
