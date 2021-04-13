@@ -65,6 +65,8 @@ const resolvers = {
       return { token, dungeonMaster };
     },
     addPlayer: async (parent, args, context) => {
+      console.log("ADD PLAYER REACHED!");
+      console.log(args);
       if (context.dungeonMaster) {
         const player = await Player.create({
           ...args,

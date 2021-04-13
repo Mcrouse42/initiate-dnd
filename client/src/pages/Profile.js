@@ -57,7 +57,7 @@ const Profile = () => {
           />
           </div>
         </div>
-        <div className="mb-3"><PlayerForm dungeonMaster={dungeonMaster._id} /></div>
+        <div className="mb-3"><PlayerForm dungeonMaster={dungeonMaster} /></div>
       </div>
   
   );
