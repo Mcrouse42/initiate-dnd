@@ -65,14 +65,16 @@ const resolvers = {
       return { token, dungeonMaster };
     },
     addPlayer: async (parent, { playerData }, context) => {
-      console.log(playerData);
+      console.log("Player Data: ", playerData);
       if (context.dungeonMaster) {
-        const updatedDungeonMaster = await DungeonMaster.findOneAndUpdate(
-          {_id: context.dungeonMaster._id},
+        console.log(context.dungeonMaster);
+        console.log(context.dungeonMaster._id);
+        const updatedDungeonMasterPlayer = await DungeonMaster.findOneAndUpdate(
+          { _id: context.dungeonMaster._id },
           { $addToSet: { players: playerData } },
           { new: true }
         );
-        return updatedDungeonMaster;
+        return updatedDungeonMasterPlayer;
       }
       return new AuthenticationError('You need to be logged in to save a player');
     },

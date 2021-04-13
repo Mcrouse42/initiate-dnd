@@ -14,7 +14,7 @@ import Auth from '../../utils/auth';
 const PlayerForm = () => {
     
     // create state for holding returned player data
-    //const [searchedPlayers, setSearchedPlayers] = useState([]);
+    const [searchedPlayers, setSearchedPlayers] = useState([]);
 
     // set up that variables that are referenced in the form
     const [formState, setFormState] = useState({
@@ -49,6 +49,7 @@ const PlayerForm = () => {
             ...formState,
             [name]: value,
         });
+        
     };
 
     // submit form (async)
@@ -58,12 +59,41 @@ const PlayerForm = () => {
         console.log("button to create new player pressed");
         console.log(formState);
 
-        const playerData = formState;
-        console.log(playerData);
+        console.log(formState.playerName,
+            formState.playerClass,
+            formState.playerRace,
+            parseInt(formState.playerLevel),
+            parseInt(formState.playerArmorClass),
+            parseInt(formState.playerHitPoints),
+            parseInt(formState.playerStrengthStat),
+            parseInt(formState.playerDexterityStat),
+            parseInt(formState.playerConstitutionStat),
+            parseInt(formState.playerIntelligenceStat),
+            parseInt(formState.playerWisdomStat),
+            parseInt(formState.playerCharismaStat)
+        );
+
+        const playerData = [{
+            playerName: formState.playerName,
+            playerClass: formState.playerClass,
+            playerRace: formState.playerRace,
+            playerLevel: parseInt(formState.playerLevel),
+            playerArmorClass: parseInt(formState.playerArmorClass),
+            playerHitPoints: parseInt(formState.playerHitPoints),
+            playerStrengthStat: parseInt(formState.playerStrengthStat),
+            playerDexterityStat: parseInt(formState.playerDexterityStat),
+            playerConstitutionStat: parseInt(formState.playerConstitutionStat),
+            playerIntelligenceStat: parseInt(formState.playerIntelligenceStat),
+            playerWisdomStat: parseInt(formState.playerWisdomStat),
+            playerCharismaStat: parseInt(formState.playerCharismaStat)
+        }];
+
+       //const playerData = formState;
+        console.log(playerData[0]);
 
         //setSearchedPlayers(playerData);
         //console.log(playerData);
-        setFormState('');
+        //setFormState('');
 
 
         // find the monster in 'searchedMonsters' state by the matching name
@@ -77,10 +107,13 @@ const PlayerForm = () => {
             if (!token) {
                 return false;
             }
-
+            console.log("token good, user logged in");
             try {
-                const { data } = await addPlayer( { variables: { playerData: {...playerData } } } );
-
+                const finalPlayerData = playerData[0];
+                console.log(finalPlayerData);
+                const { data } = await addPlayer( { variables: {  playerData: finalPlayerData  } } );
+                //const { data } = await addPlayer( { variables: {  playerData: {finalPlayerData } } } );
+                
                 // if monster successfully saves to user's account, save monster name to state
                 //setSavedMonsterNames([...savedMonsterNames, monsterToSave.monsterName]);
             } catch (err) {
@@ -158,7 +191,7 @@ const PlayerForm = () => {
     return (
         <div className="col-12 mb-3 col-lg-8">
             <h2>Enter A New Player</h2>
-                <form onSubmit={handleFormSubmit}>
+                <form>
                     <label htmlFor="playerName">Player Name:</label>
                     <input
                         className='form-input'

@@ -14,18 +14,18 @@ const typeDefs = gql`
   }
 
   input playerInput {
-    playerName: String!
-    playerClass: String!
-    playerRace: String!
+    playerName: String
+    playerClass: String
+    playerRace: String
     playerLevel: Int
-    playerArmorClass: Int!
-    playerHitPoints: Int!
-    playerStrengthStat: Int!
-    playerDexterityStat: Int!
-    playerConstitutionStat: Int!
-    playerIntelligenceStat: Int!
-    playerWisdomStat: Int!
-    playerCharismaStat: Int!
+    playerArmorClass: Int
+    playerHitPoints: Int
+    playerStrengthStat: Int
+    playerDexterityStat: Int
+    playerConstitutionStat: Int
+    playerIntelligenceStat: Int
+    playerWisdomStat: Int
+    playerCharismaStat: Int
   }
   
   type Player {
@@ -92,7 +92,7 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    addPlayer(playerData: playerInput) : Player
+    addPlayer(playerData: playerInput): Player
     saveMonster(monsterData: monsterInput): Monster
     removeMonster(monsterName: String!): DungeonMaster
   }
