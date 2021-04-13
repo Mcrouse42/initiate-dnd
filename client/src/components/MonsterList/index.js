@@ -22,8 +22,8 @@ const MonsterList = ({ monsters, title }) => {
                     <p>Challenge: {monster.monsterChallenge}</p>
                     <p>Armor Class: {monster.monsterArmorClass}</p>
                     <p>Hit Points: {monster.monsterHitPoints}</p>
-                    <p>Strength: {monster.monsterStrengthStats}</p>
-                    <p>Dexterity: {monster.monsterDexterity}</p>
+                    <p>Strength: {monster.monsterStrengthStat}</p>
+                    <p>Dexterity: {monster.monsterDexterityStat}</p>
                     <p>Constitution: {monster.monsterConstitutionStat}</p>
                     <p>Intelligence: {monster.monsterIntelligenceStat}</p>
                     <p>Wisdom: {monster.monsterWisdomStat}</p>
