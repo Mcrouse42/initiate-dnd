@@ -4,4 +4,24 @@ $curry: #b7990d;
 $lightGrey: #d1d1d1;
 $darkGrey: #6b717e;
 $bodyFont: "Helvetica Neue", "Arial", sans-serif;
-$titleFont: 'Oranienbaum', serif;
+$error: rgb(228, 46, 1);
+$border-radius: 0.3rem;
+$spacingOne: calc(1rem * 0.25);
+$spacingTwo: calc(1rem * 0.5);
+$spacingThree: 1rem;
+$spacingFour: calc(1rem * 1.5);
+$spacingFive: calc(1rem * 3);
+$light: #d1d1d1;
+$dark: #6b717e;
+$primary: $curry
+
+
+:root {
+    --primary: #497573;
+    --secondary: #000000;
+    --tertiary: #b2c2c1;
+    --quatrinary: #d1d1d1;
+    --light: #b7990d;
+    --dark: #000000;
+    
+  }
