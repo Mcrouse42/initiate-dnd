@@ -9,13 +9,18 @@ export const QUERY_DMS = gql`
       dungeonMaster
       email
       players {
-        _id
         playerName
         playerClass
         playerRace
         playerLevel
         playerArmorClass
         playerHitPoints
+        playerStrengthStat
+        playerDexterityStat
+        playerConstitutionStat
+        playerIntelligenceStat
+        playerWisdomStat
+        playerCharismaStat
       }
       monsters {
         monsterName
@@ -61,6 +66,12 @@ export const QUERY_PLAYERS = gql`
       playerLevel
       playerArmorClass
       playerHitPoints
+      playerStrengthStat
+      playerDexterityStat
+      playerConstitutionStat
+      playerIntelligenceStat
+      playerWisdomStat
+      playerCharismaStat
     }
   }
 `;
@@ -72,7 +83,6 @@ export const QUERY_DM = gql`
       dungeonMaster
       email
       players {
-        _id
         playerName
         playerClass
         playerRace
@@ -114,7 +124,6 @@ export const QUERY_ME = gql`
       dungeonMaster
       email
       players {
-        _id
         playerName
         playerClass
         playerRace
