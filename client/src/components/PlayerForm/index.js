@@ -72,8 +72,12 @@ const PlayerForm = () => {
             parseInt(formState.playerWisdomStat),
             parseInt(formState.playerCharismaStat)
         );
+        for (const [key, value] of Object.entries(formState)) {
+            console.log(`${key}: ${value}`);
+            console.log(typeof(value));
+        }
 
-        const playerData = [{
+        const playerData = {
             playerName: formState.playerName,
             playerClass: formState.playerClass,
             playerRace: formState.playerRace,
@@ -86,10 +90,17 @@ const PlayerForm = () => {
             playerIntelligenceStat: parseInt(formState.playerIntelligenceStat),
             playerWisdomStat: parseInt(formState.playerWisdomStat),
             playerCharismaStat: parseInt(formState.playerCharismaStat)
-        }];
+        };
+
+        console.log("------------------------------------------------");
+        for (const [key, value] of Object.entries(playerData)) {
+            console.log(`${key}: ${value}`);
+            console.log(typeof(value));
+        }
 
        //const playerData = formState;
-        console.log(playerData[0]);
+        console.log(playerData);
+        console.log(typeof(playerData));
 
         //setSearchedPlayers(playerData);
         //console.log(playerData);
@@ -109,9 +120,10 @@ const PlayerForm = () => {
             }
             console.log("token good, user logged in");
             try {
-                const finalPlayerData = playerData[0];
+                const finalPlayerData = playerData;
                 console.log(finalPlayerData);
-                const { data } = await addPlayer( { variables: {  playerData: finalPlayerData  } } );
+                console.log(typeof(finalPlayerData));
+                await addPlayer( { variables: {  playerData: finalPlayerData  } } );
                 //const { data } = await addPlayer( { variables: {  playerData: {finalPlayerData } } } );
                 
                 // if monster successfully saves to user's account, save monster name to state
@@ -119,75 +131,8 @@ const PlayerForm = () => {
             } catch (err) {
                 console.error(err);
             }
-
-        // const playerData = results.map((player) => ({
-        //     playerName: player.playerName,
-        //     playerLevel: '',
-        //     playerArmorClass: '',
-        //     playerHitPoints: '',
-        //     playerStrengthStat: '',
-        //     playerDexterityStat: '',
-        //     playerConstitutionStat: '',
-        //     playerIntelligenceStat: '',
-        //     playerWisdomStat: '',
-        //     playerCharismaStat:
-        // }))
-
-        // get token
-        // const token = Auth.loggedIn() ? Auth.getToken() : null;
-        //     if (!token) {
-        //         return false;
-        //     }
-
-        //     try {
-        //         const { data } = await addPlayer( { variables: { playerData: {formState } } } );
-
-        //         // if monster successfully saves to user's account, save monster name to state
-        //         //setSavedMonsterNames([...savedMonsterNames, monsterToSave.monsterName]);
-        //     } catch (err) {
-        //         console.error(err);
-        //     }
     };
-
-    //     try {
-    //         //const { data } = 
-    //         await addPlayer({
-    //             variables: { ...formState, dungeonMaster }
-                
-    //         });
-    //         //console.log(variables);
-            
-    //     } catch (e) {
-    //         console.error(e)
-    //     }
-    // };
-
-
-//     const { dungeonMaster: userParam } = useParams();
-
-//     const {data } = useQuery(userParam ? QUERY_DM : QUERY_ME, {
-//         variables: { dungeonMaster: userParam }
-//     });
-//   //console.log("data", data);
-//   //console.log("data.me", data.me);
-
-//   const dungeonMaster = data?.me || data?.dungeonMaster || {};
-//   console.log(dungeonMaster);
-
-//   // redirect to personal profile page if username is the logged-in user's
-//   if (Auth.loggedIn() && Auth.getProfile().data.dungeonMaster === userParam) {
-//     return <Redirect to="/profile" />;
-//   }
-
-//   if (!dungeonMaster?.dungeonMaster) {
-//     return (
-//       <h4>
-//         You need to be logged in to see this page. Use the navigation links above to sign up or log in!
-//       </h4>
-//     );
-//   }
-//   console.log(dungeonMaster.dungeonMaster);
-//   console.log(dungeonMaster.players);
+    
     return (
         <div className="col-12 mb-3 col-lg-8">
             <h2>Enter A New Player</h2>

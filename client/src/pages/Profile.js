@@ -38,6 +38,7 @@ const Profile = () => {
     );
   }
   console.log(dungeonMaster.dungeonMaster);
+  console.log(dungeonMaster);
   console.log(dungeonMaster.players);
   
   return (
