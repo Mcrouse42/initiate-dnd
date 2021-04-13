@@ -28,7 +28,7 @@ class BattlePlayerList extends Component {
                     <div key={player._id} className="card mb-3">
                         <p className="card-header">
                             <h2>{player.playerName}<span onClick={this.showModal}> + </span></h2>
-                            
+                            <textarea> Test</textarea>
                             <Modal show={this.state.show} handleClose={this.hideModal}>
                                 <h2>{player.playerName}</h2>
                                 <p>Player Race: {player.playerRace}</p>
@@ -51,6 +51,14 @@ class BattlePlayerList extends Component {
                         <div className="card-body">          
                             <div className="card mb-3">
                                 <p>Player AC: {player.playerArmorClass}</p>
+                                <form>
+                                    <label htmlFor="playerArmorClass">Player AC:</label>
+                                    <input
+                                        id="playerArmorClass"
+                                        placeholder={player.playerArmorClass}
+                                        input="number"
+                                       />
+                                </form>
                                 <p>Player HP: {player.playerHitPoints}</p>
                                 {/* <textarea id="initiative">Initiative</textarea> */}
                             </div>

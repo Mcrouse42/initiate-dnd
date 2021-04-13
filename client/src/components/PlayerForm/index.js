@@ -4,6 +4,19 @@ import { ADD_PLAYER } from '../../utils/mutations';
 import { QUERY_ME, QUERY_PLAYERS } from '../../utils/queries';
 //import { Redirect, useParams } from 'react-router-dom';
 
+// import { onError } from "@apollo/client/link/error";
+
+// // Log any GraphQL errors or network error that occurred
+// const errorLink = onError(({ graphQLErrors, networkError }) => {
+//   if (graphQLErrors)
+//     graphQLErrors.map(({ message, locations, path }) =>
+//       console.log(
+//         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+//       )
+//     );
+//   if (networkError) console.log(`[Network error]: ${networkError}`);
+// });
+
 
 const PlayerForm = ({ dungeonMaster }) => {
     console.log(dungeonMaster);
