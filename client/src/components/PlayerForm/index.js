@@ -19,6 +19,8 @@ const PlayerForm = () => {
     // set up that variables that are referenced in the form
     const [formState, setFormState] = useState({
         playerName: '',
+        playerClass: '',
+        playerRace: '',
         playerLevel: '',
         playerArmorClass: '',
         playerHitPoints: '',
@@ -132,7 +134,7 @@ const PlayerForm = () => {
                 console.error(err);
             }
     };
-    
+
     return (
         <div className="col-12 mb-3 col-lg-8">
             <h2>Enter A New Player</h2>

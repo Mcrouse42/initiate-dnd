@@ -71,7 +71,7 @@ const resolvers = {
         console.log(context.dungeonMaster._id);
         const updatedDungeonMasterPlayer = await DungeonMaster.findOneAndUpdate( // this is not working
           { _id: context.dungeonMaster._id },
-          //{ $addToSet: { players: playerData } },// this is the line that is erroring
+          { $addToSet: { players: playerData } },// this is the line that is erroring
           { new: true }
         );
         return updatedDungeonMasterPlayer;
