@@ -30,10 +30,6 @@ export const ADD_DM = gql`
 export const SAVE_MONSTER = gql`
     mutation saveMonster($monsterData: monsterInput!) {
       saveMonster(monsterData: $monsterData) {
-        _id
-        dungeonMaster
-        email
-        monsters {
           monsterName
           monsterSize
           monsterType
@@ -48,7 +44,6 @@ export const SAVE_MONSTER = gql`
           monsterIntelligenceStat
           monsterWisdomStat
           monsterCharismaStat
-        }
       }
     }
   `;

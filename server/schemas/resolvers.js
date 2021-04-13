@@ -83,6 +83,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
     saveMonster: async (parent, { monsterData }, context) => {
+      console.log(monsterData);
       if (context.dungeonMaster) {
         const updatedDungeonMaster = await DungeonMaster.findOneAndUpdate(
           { _id: context.dungeonMaster._id },

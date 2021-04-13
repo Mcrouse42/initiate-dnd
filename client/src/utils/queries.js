@@ -17,6 +17,22 @@ export const QUERY_DMS = gql`
         playerArmorClass
         playerHitPoints
       }
+      monsters {
+        monsterName
+        monsterSize
+        monsterType
+        monsterAlignment
+        monsterSpeed
+        monsterChallenge
+        monsterArmorClass
+        monsterHitPoints
+        monsterStrengthStat
+        monsterDexterityStat
+        monsterConstitutionStat
+        monsterIntelligenceStat
+        monsterWisdomStat
+        monsterCharismaStat
+      }
     }
   }
 `;
@@ -70,6 +86,22 @@ export const QUERY_DM = gql`
         playerWisdomStat
         playerCharismaStat
       }
+      monsters {
+        monsterName
+        monsterSize
+        monsterType
+        monsterAlignment
+        monsterSpeed
+        monsterChallenge
+        monsterArmorClass
+        monsterHitPoints
+        monsterStrengthStat
+        monsterDexterityStat
+        monsterConstitutionStat
+        monsterIntelligenceStat
+        monsterWisdomStat
+        monsterCharismaStat
+      }
     }
   }
 `;
@@ -95,6 +127,22 @@ export const QUERY_ME = gql`
         playerIntelligenceStat
         playerWisdomStat
         playerCharismaStat
+      }
+      monsters {
+        monsterName
+        monsterSize
+        monsterType
+        monsterAlignment
+        monsterSpeed
+        monsterChallenge
+        monsterArmorClass
+        monsterHitPoints
+        monsterStrengthStat
+        monsterDexterityStat
+        monsterConstitutionStat
+        monsterIntelligenceStat
+        monsterWisdomStat
+        monsterCharismaStat
       }
     }
   }
