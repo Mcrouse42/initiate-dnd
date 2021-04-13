@@ -21,6 +21,7 @@ const Header = () => {
             <>
               <Link to="/profile">DM Profile</Link>
               <Link to="/battleprep">Battle Prep</Link>
+              <Link to="/generatenpc">Generate NPC</Link>
               <a href="/" onClick={logout}>
                 Logout
               </a>
