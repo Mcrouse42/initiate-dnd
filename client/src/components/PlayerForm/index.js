@@ -1,25 +1,21 @@
-import React, { useState } from 'react';
+// import general
+import React, { useEffect, useState } from 'react';
 import { useMutation} from '@apollo/react-hooks';
-import { ADD_PLAYER } from '../../utils/mutations';
 import { QUERY_ME, QUERY_PLAYERS } from '../../utils/queries';
-//import { Redirect, useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { savePlayerNames, getSavedPlayerNames } from '../../utils/localStorage';
 
-// import { onError } from "@apollo/client/link/error";
+// mutation to add player
+import { ADD_PLAYER } from '../../utils/mutations';
 
-// // Log any GraphQL errors or network error that occurred
-// const errorLink = onError(({ graphQLErrors, networkError }) => {
-//   if (graphQLErrors)
-//     graphQLErrors.map(({ message, locations, path }) =>
-//       console.log(
-//         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-//       )
-//     );
-//   if (networkError) console.log(`[Network error]: ${networkError}`);
-// });
+// auth to make sure logged in
+import Auth from '../../utils/auth';
 
+const PlayerForm = () => {
+    
+    // create state for holding returned player data
+    //const [searchedPlayers, setSearchedPlayers] = useState([]);
 
-const PlayerForm = ({ dungeonMaster }) => {
-    console.log(dungeonMaster);
     // set up that variables that are referenced in the form
     const [formState, setFormState] = useState({
         playerName: '',
@@ -33,34 +29,18 @@ const PlayerForm = ({ dungeonMaster }) => {
         playerWisdomStat: '',
         playerCharismaStat: ''
     });
-    const [addPlayer, { error }] = useMutation(ADD_PLAYER, {
-        update(cache, { data: { addPlayer } }) {
-            console.log("Made it into add player mutation");
-            try {
 
-//                 const { data } = useQuery(QUERY_PLAYERS);
+    // create state to hold saved monsterName values
+    const [savedPlayerNames, setSavedPlayerNames] = useState(getSavedPlayerNames());
 
-//   console.log(data);
-//   const player = data?.playerName || [];
-//   console.log(player);
+    // mutation not created yet 
+    const [addPlayer, { error }] = useMutation(ADD_PLAYER);
 
-                const { players } = cache.readQuery({ query: QUERY_PLAYERS });
-                cache.writeQuery({
-                    query: QUERY_PLAYERS,
-                    data: {}
-                })
-            } catch (e) {
-                console.error(e);
-            }
-            // update me object's cache, appending new thought to the end of the array
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            cache.writeQuery({
-                query: QUERY_ME,
-                data: { me: { ...me, players: [...me.players, addPlayer] } }
-            });
-        }
+    // set up useEffect hook to save `savedMonsterNames` list to localStorage on component unmount
+    useEffect(() => {
+        return () => savePlayerNames(savedPlayerNames);
     });
-    
+
     // update state based on form input changes
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -69,29 +49,85 @@ const PlayerForm = ({ dungeonMaster }) => {
             ...formState,
             [name]: value,
         });
-
-        //console.log(event);
     };
 
     // submit form (async)
-    const handleFormSubmit = async event => {
-        event.preventDefault();
+    const handleFormSubmit = async (formState) => {
+        //event.preventDefault();
 
         console.log("button to create new player pressed");
         console.log(formState);
 
-        try {
-            //const { data } = 
-            await addPlayer({
-                variables: { ...formState, dungeonMaster }
-                
-            });
-            //console.log(variables);
-            
-        } catch (e) {
-            console.error(e)
-        }
+        const playerData = formState;
+        console.log(playerData);
+
+        //setSearchedPlayers(playerData);
+        //console.log(playerData);
+        setFormState('');
+
+
+        // find the monster in 'searchedMonsters' state by the matching name
+        // const playerToSave = searchedPlayers.find(playerData);
+        // console.log(playerToSave);
+
+        // get token
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+            console.log("Check for token reached");
+
+            if (!token) {
+                return false;
+            }
+
+            try {
+                const { data } = await addPlayer( { variables: { playerData: {...playerData } } } );
+
+                // if monster successfully saves to user's account, save monster name to state
+                //setSavedMonsterNames([...savedMonsterNames, monsterToSave.monsterName]);
+            } catch (err) {
+                console.error(err);
+            }
+
+        // const playerData = results.map((player) => ({
+        //     playerName: player.playerName,
+        //     playerLevel: '',
+        //     playerArmorClass: '',
+        //     playerHitPoints: '',
+        //     playerStrengthStat: '',
+        //     playerDexterityStat: '',
+        //     playerConstitutionStat: '',
+        //     playerIntelligenceStat: '',
+        //     playerWisdomStat: '',
+        //     playerCharismaStat:
+        // }))
+
+        // get token
+        // const token = Auth.loggedIn() ? Auth.getToken() : null;
+        //     if (!token) {
+        //         return false;
+        //     }
+
+        //     try {
+        //         const { data } = await addPlayer( { variables: { playerData: {formState } } } );
+
+        //         // if monster successfully saves to user's account, save monster name to state
+        //         //setSavedMonsterNames([...savedMonsterNames, monsterToSave.monsterName]);
+        //     } catch (err) {
+        //         console.error(err);
+        //     }
     };
+
+    //     try {
+    //         //const { data } = 
+    //         await addPlayer({
+    //             variables: { ...formState, dungeonMaster }
+                
+    //         });
+    //         //console.log(variables);
+            
+    //     } catch (e) {
+    //         console.error(e)
+    //     }
+    // };
 
 
 //     const { dungeonMaster: userParam } = useParams();
@@ -243,9 +279,15 @@ const PlayerForm = ({ dungeonMaster }) => {
                         value={formState.playerCharismaStat}
                         onChange={handleChange}
                     />
-                    <button className='btn d-block w-100' type='submit'>
+                    {Auth.loggedIn() && (
+                        <Button
+                        onClick={() => handleFormSubmit(formState)}>
+                            Add Player!
+                        </Button>
+                    )}
+                    {/* <button className='btn d-block w-100' type='submit'>
                         Add Player!
-                    </button>
+                    </button> */}
                 </form>
                 {error && <div>Add Player Failed :(</div>}
         </div>

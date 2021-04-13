@@ -64,25 +64,17 @@ const resolvers = {
       const token = signToken(dungeonMaster);
       return { token, dungeonMaster };
     },
-    addPlayer: async (parent, args, context) => {
-      console.log("ADD PLAYER REACHED!");
-      console.log(args);
+    addPlayer: async (parent, { playerData }, context) => {
+      console.log(playerData);
       if (context.dungeonMaster) {
-        const player = await Player.create({
-          ...args,
-          dungeonMaster: context.dungeonMaster,
-        });
-
-        await DungeonMaster.findByIdAndUpdate(
-          { _id: context.dungeonMaster._id },
-          { $push: { players: player._id } },
+        const updatedDungeonMaster = await DungeonMaster.findOneAndUpdate(
+          {_id: context.dungeonMaster._id},
+          { $addToSet: { players: playerData } },
           { new: true }
         );
-
-        return player;
+        return updatedDungeonMaster;
       }
-
-      throw new AuthenticationError("You need to be logged in!");
+      return new AuthenticationError('You need to be logged in to save a player');
     },
     saveMonster: async (parent, { monsterData }, context) => {
       console.log(monsterData);
@@ -103,6 +95,29 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+
+
+// old model for addPlayer
+// addPlayer: async (parent, args, context) => {
+//   console.log("ADD PLAYER REACHED!");
+//   console.log(args);
+//   if (context.dungeonMaster) {
+//     const player = await Player.create({
+//       ...args,
+//       dungeonMaster: context.dungeonMaster,
+//     });
+
+//     await DungeonMaster.findByIdAndUpdate(
+//       { _id: context.dungeonMaster._id },
+//       { $push: { players: player._id } },
+//       { new: true }
+//     );
+
+//     return player;
+//   }
+
+//   throw new AuthenticationError("You need to be logged in!");
+// }
 
 // ------------------------ BACKEND TESTING INFO ------------------------
 // get all dungeon masters (players included):
