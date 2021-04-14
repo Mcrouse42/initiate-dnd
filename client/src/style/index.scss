@@ -118,6 +118,7 @@ nav a:hover {
 .pill {
   font-size: 1.3rem;
   text-decoration: none;
+  font-family: $bodyFont;
   padding: 0.5rem 1.2rem;
   margin: 5px 0;
   border-radius: $borderRadius;
@@ -140,18 +141,19 @@ nav a:hover {
 
 /* CARDS */
 .card {
-  margin: 20px 20px;
-  padding: 20px 20px;
-  border: 3px solid $dark;
+  margin: 10px 10px;
+  padding: 20px 0px;
+  border: 3px solid $black;
   border-radius: $borderRadius;
   background-color: $curry;
-  color: $dark;
+  color: $black;
+  
 }
 
 .card-header {
   color: $black;
   margin: 0;
-  background-color: $black;
+  background-color: $curry;
   padding: 0.625rem;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
@@ -162,10 +164,12 @@ nav a:hover {
 }
 
 /* FORM */
+.form
 .form-label,
 .form-input,
 .form-textarea {
   display: block;
+  justify-content: center;
 }
 
 .form-label {

@@ -107,7 +107,8 @@ const MonsterSearch = () => {
         };
 
   return (
-        <div className="container flex-row align-center justify-center align-center">
+        <div className="">
+            <div className="form">
             <Form onSubmit={handleFormSubmit}>
                 <Form.Group controlId="formMonster">
                     <Form.Label>Find a Monster</Form.Label>
@@ -122,13 +123,14 @@ const MonsterSearch = () => {
                     Submit
                 </Button>
             </Form>
+            </div>
             
             <div>
             <CardDeck>
                 <Grid container spacing={2} justify="center">
                 {searchedMonsters.map((monster, index) => {
                     return (
-                        <Grid item>
+                        <Grid item xs={12} sm={6} md={4}>
                         <Card className="card" key={monster.monsterName}>
                             <CardImg className="justify-center align-center" src={`./images/${monster.monsterType}.png`}></CardImg>
                             <Card.Body class="card-body">
