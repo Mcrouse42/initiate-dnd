@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/RaeStichter/initiate-dnd#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "graphql": "^15.5.0",
     "if-env": "^1.0.4",
     "node-sass": "^5.0.0"
