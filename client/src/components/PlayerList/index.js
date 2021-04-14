@@ -24,7 +24,6 @@ const PlayerList = ({ players, title }) => {
               >
                 {player.dungeonMaster}
               </Link>{" "}
-              player created on {player.createdAt}
             </p>
 
             <div className="card-body">
