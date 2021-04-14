@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { searchMonsterApi } from '../utils/API';
-import { Form, Button, Container, Card, CardDeck, ListGroup, Table } from 'react-bootstrap';
+import { Form, Button, Container, Card, CardDeck, ListGroup, Table, CardImg } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
 import { saveMonsterNames, getSavedMonsterNames } from '../utils/localStorage';
+
+//import style components from material-ui
+import { Grid } from '@material-ui/core';
 
 // mutation not created yet 
 import { SAVE_MONSTER } from '../utils/mutations';
@@ -51,6 +54,7 @@ const MonsterSearch = () => {
                 monsterName: monster.name,
                 monsterSize: monster.size,
                 monsterType: monster.type,
+                monsterImg: `../style/images/${monster.type}.png`,
                 monsterAlignment: monster.alignment,
                 // speed is an object - using only walk for now
                 monsterSpeed: monster.speed.walk,
@@ -103,7 +107,8 @@ const MonsterSearch = () => {
         };
 
   return (
-        <div className="container flex-row justify-space-between-lg justify-center align-center">
+        <div className="">
+            <div className="form">
             <Form onSubmit={handleFormSubmit}>
                 <Form.Group controlId="formMonster">
                     <Form.Label>Find a Monster</Form.Label>
@@ -118,27 +123,32 @@ const MonsterSearch = () => {
                     Submit
                 </Button>
             </Form>
-
+            </div>
+            
+            <div>
             <CardDeck>
+                <Grid container spacing={2} justify="center">
                 {searchedMonsters.map((monster, index) => {
                     return (
-                        <Card key={monster.monsterName}>
-                            <Card.Body>
-                                <Card.Title>{monster.monsterName}</Card.Title>
+                        <Grid item xs={12} sm={6} md={4}>
+                        <Card className="card" key={monster.monsterName}>
+                            <CardImg className="justify-center align-center" src={`./images/${monster.monsterType}.png`}></CardImg>
+                            <Card.Body class="card-body">
+                                <Card.Title class="card-title"><h2 className="text-center">{monster.monsterName}</h2></Card.Title>
                                 <Card.Text>
                                     <ListGroup key={`monster-stats-${index}`}>
-                                    <ListGroup.Item>Size: {monster.monsterSize}</ListGroup.Item>
-                                    <ListGroup.Item>Type: {monster.monsterType}</ListGroup.Item>
-                                    <ListGroup.Item>Alignment: {monster.monsterAlignment}</ListGroup.Item>
-                                    <ListGroup.Item>Walking Speed: {monster.monsterSpeed}</ListGroup.Item>
-                                    <ListGroup.Item>Challenge: {monster.monsterChallenge}</ListGroup.Item>
-                                    <ListGroup.Item>Armor Class: {monster.monsterArmorClass}</ListGroup.Item>
-                                    <ListGroup.Item>Hit Points: {monster.monsterHitPoints}</ListGroup.Item>
-                                    <ListGroup.Item>Strength: {monster.monsterStrengthStats}</ListGroup.Item>
-                                    <ListGroup.Item>Dexterity: {monster.monsterDexterity}</ListGroup.Item>
-                                    <ListGroup.Item>Constitution: {monster.monsterConstitutionStat}</ListGroup.Item>
-                                    <ListGroup.Item>Intelligence: {monster.monsterIntelligenceStat}</ListGroup.Item>
-                                    <ListGroup.Item>Charisma: {monster.monsterCharismaStat}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Size:</h5> {monster.monsterSize}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Type:</h5> {monster.monsterType}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Alignment:</h5> {monster.monsterAlignment}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Walking Speed:</h5> {monster.monsterSpeed}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Challenge:</h5> {monster.monsterChallenge}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Armor Class:</h5> {monster.monsterArmorClass}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Hit Points:</h5> {monster.monsterHitPoints}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Strength:</h5> {monster.monsterStrengthStats}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Dexterity:</h5> {monster.monsterDexterity}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Constitution:</h5> {monster.monsterConstitutionStat}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Intelligence:</h5> {monster.monsterIntelligenceStat}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Charisma:</h5> {monster.monsterCharismaStat}</ListGroup.Item>
                                     </ListGroup>
                                 </Card.Text>
                                 {/* <Table bordered size="sm">
@@ -176,9 +186,12 @@ const MonsterSearch = () => {
                                 )}
                             </Card.Body>
                         </Card>
+                        </Grid>
                     )
                 })}
+                </Grid>
             </CardDeck>
+            </div>
 
         </div>      
   );
