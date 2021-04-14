@@ -21,12 +21,6 @@ class BattlePlayerList extends Component {
     this.setState({ show: false });
   };
 
-//   constructor() {
-//     super();
-//       this.state = { players }
-//     
-//   }
-
   sortPlayerByDesc() {
     this.setState((prevState) => {
       this.state.players.sort((a, b) => b.player - a.player);
