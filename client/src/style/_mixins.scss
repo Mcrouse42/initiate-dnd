@@ -1,5 +1,10 @@
+@font-face {
+    font-family: 'BrianJames';
+    src: url('./font/BrianJames.ttf');
+}
+
 @mixin titleFont {
-    font-family: "BenguiatITCW01-BoldCn";
+    font-family: "BrianJames";
     text-transform: uppercase;
     font-weight: 800;
     font-style: normal;

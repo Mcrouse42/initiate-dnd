@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { searchMonsterApi } from '../utils/API';
-import { Form, Button, Container, Card, CardDeck, ListGroup, Table } from 'react-bootstrap';
+import { Form, Button, Container, Card, CardDeck, ListGroup, Table, CardImg } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
 import { saveMonsterNames, getSavedMonsterNames } from '../utils/localStorage';
 
@@ -51,6 +51,7 @@ const MonsterSearch = () => {
                 monsterName: monster.name,
                 monsterSize: monster.size,
                 monsterType: monster.type,
+                monsterImg: `../style/images/${monster.type}.png`,
                 monsterAlignment: monster.alignment,
                 // speed is an object - using only walk for now
                 monsterSpeed: monster.speed.walk,
@@ -123,6 +124,7 @@ const MonsterSearch = () => {
                 {searchedMonsters.map((monster, index) => {
                     return (
                         <Card key={monster.monsterName}>
+                            <CardImg src={`../../src/style/images/${monster.monsterType}.png`}></CardImg>
                             <Card.Body>
                                 <Card.Title>{monster.monsterName}</Card.Title>
                                 <Card.Text>
