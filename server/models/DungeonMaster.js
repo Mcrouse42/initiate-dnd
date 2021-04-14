@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const monsterSchema = require('./Monster');
+const playerSchema = require('./Player');
 
 const DungeonMasterSchema = new Schema(
   {
@@ -27,6 +28,7 @@ const DungeonMasterSchema = new Schema(
         ref: 'Player'
       }
     ],
+    players: [playerSchema],
     monsters: [monsterSchema]
       // [
       // {

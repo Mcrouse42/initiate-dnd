@@ -16,6 +16,7 @@ import NoMatch from './pages/NoMatch';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import BattlePrep from './pages/BattlePrep';
+import GenerateNPC from './pages/GenerateNPC';
 
 // import Home from './pages/Home';
 
@@ -35,6 +36,7 @@ const client = new ApolloClient({
 
 
 function App() {
+
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -47,6 +49,7 @@ function App() {
               <Route exact path ="/signup" component={Signup} />
               <Route exact path="/profile/:dungeonMaster?" component={Profile} />
               <Route exact path="/battleprep" component={BattlePrep}/>
+              <Route exact path="/generatenpc" component={GenerateNPC}/>
 
               <Route component={NoMatch} />
             </Switch>

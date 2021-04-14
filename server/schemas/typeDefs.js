@@ -2,6 +2,7 @@
 const { gql } = require("apollo-server-express");
 
 // make a different input type and pass it into actions
+//removed id from player
 
 const typeDefs = gql`
   type DungeonMaster {
@@ -12,8 +13,22 @@ const typeDefs = gql`
     monsters: [Monster]
   }
 
+  input playerInput {
+    playerName: String
+    playerClass: String
+    playerRace: String
+    playerLevel: Int
+    playerArmorClass: Int
+    playerHitPoints: Int
+    playerStrengthStat: Int
+    playerDexterityStat: Int
+    playerConstitutionStat: Int
+    playerIntelligenceStat: Int
+    playerWisdomStat: Int
+    playerCharismaStat: Int
+  }
+  
   type Player {
-    _id: ID
     playerName: String
     playerClass: String
     playerRace: String
@@ -77,21 +92,7 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    addPlayer(
-      _id: ID
-      playerName: String!
-      playerClass: String!
-      playerRace: String!
-      playerLevel: Int
-      playerArmorClass: Int
-      playerHitPoints: Int
-      playerStrengthStat: Int
-      playerDexterityStat: Int
-      playerConstitutionStat: Int
-      playerIntelligenceStat: Int
-      playerWisdomStat: Int
-      playerCharismaStat: Int
-    ): Player
+    addPlayer(playerData: playerInput): Player
     saveMonster(monsterData: monsterInput): Monster
     removeMonster(monsterName: String!): DungeonMaster
   }
@@ -103,3 +104,21 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
+// removed from mutation
+
+// addPlayer(
+//   _id: ID
+//   playerName: String!
+//   playerClass: String!
+//   playerRace: String!
+//   playerLevel: Int
+//   playerArmorClass: Int
+//   playerHitPoints: Int
+//   playerStrengthStat: Int
+//   playerDexterityStat: Int
+//   playerConstitutionStat: Int
+//   playerIntelligenceStat: Int
+//   playerWisdomStat: Int
+//   playerCharismaStat: Int
+// ): Player

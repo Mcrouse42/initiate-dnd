@@ -39,6 +39,7 @@ const Profile = () => {
     );
   }
   console.log(dungeonMaster.dungeonMaster);
+  console.log(dungeonMaster);
   console.log(dungeonMaster.players);
   
   return (
@@ -62,7 +63,7 @@ const Profile = () => {
           />
           </div>
         </div>
-        <div className="mb-3"><PlayerForm dungeonMaster={dungeonMaster} /></div>
+        <div className="mb-3"><PlayerForm /></div>
       </div>
   
   );
