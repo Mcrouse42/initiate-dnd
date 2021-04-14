@@ -1,24 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "../Modal";
+
 const BattlePlayerList = (props) => {
-  const [modelStatus, setModalStatus] = useState({ show: false });
+    const [modelStatus, setModalStatus] = useState({ show: false });
+    const [playersArray, setPlayersArray] = useState(props.players);
+  
+    let givePlayersInit = () => {
+
+        let playerInitMap = playersArray.map(player => {
+            player.initiative = 0;
+
+            return player
+        });
+
+        setPlayersArray(playerInitMap);
+    }
+
+    useEffect(() => {
+        givePlayersInit();
+    }, []);
+  
+  
+  
+  
   let showModal = () => {
     setModalStatus({ show: true });
   };
   let hideModal = () => {
       setModalStatus({ show: false });
   };
-    
-    
-  return (
+
+    let mySortFunction = () => {
+        playersArray.sort((a, b) => (b.player - a.player))
+    };
+
+return (
     <div>
-      {props.players.map((player) => (
+      {playersArray.map((player) => (
         <div key={player._id} className="card mb-3">
           <p className="card-header">
             <h2>
               {player.playerName}
               <span onClick={showModal}> + </span>
-              <input id="initiative" />
+                      <input id="initiative" onChange={mySortFunction} placeholder="initiative number" />
             </h2>
             <Modal show={modelStatus.show} handleClose={hideModal}>
               <h2>{player.playerName}</h2>
