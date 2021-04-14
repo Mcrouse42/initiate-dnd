@@ -140,7 +140,8 @@ nav a:hover {
 
 /* CARDS */
 .card {
-  margin: 0 0 20px 0;
+  margin: 20px 20px;
+  padding: 20px 20px;
   border: 3px solid $dark;
   border-radius: $borderRadius;
   background-color: $curry;
@@ -150,7 +151,7 @@ nav a:hover {
 .card-header {
   color: $black;
   margin: 0;
-  background-color: $curry;
+  background-color: $black;
   padding: 0.625rem;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
