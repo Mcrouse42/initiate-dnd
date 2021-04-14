@@ -20,19 +20,36 @@ const BattlePlayerList = (props) => {
         givePlayersInit();
     }, []);
   
-  
-  
-  
-  let showModal = () => {
-    setModalStatus({ show: true });
-  };
-  let hideModal = () => {
-      setModalStatus({ show: false });
-  };
+    // let updatePlayerInit = (playerNameValue, updatedInitValue) => {
+    //   playersArray.map((player) => {
+    //     if (playerNameValue === player.playerName) {
+    //       player.initative = updatedInitValue;
+    //     }
+    //     return player;
+    //   });
 
-    let mySortFunction = () => {
-        playersArray.sort((a, b) => (b.player - a.player))
-    };
+      let showModal = () => {
+        setModalStatus({ show: true });
+      };
+      let hideModal = () => {
+        setModalStatus({ show: false });
+      };
+
+      // let mySortFunction = () => {
+      //     playersArray.sort((a, b) => (b.intiative - a.initiative))
+      // };
+
+    //   function mySortFunction(a, b) {
+    //     if (a.initative < b.initative) {
+    //       return -1;
+    //     }
+    //     if (a.initative > b.initative) {
+    //       return 1;
+    //     }
+    //     return 0;
+    //   }
+    //     playersArray.sort(mySortFunction);
+    // };
 
 return (
     <div>
@@ -42,7 +59,7 @@ return (
             <h2>
               {player.playerName}
               <span onClick={showModal}> + </span>
-                      <input id="initiative" onChange={mySortFunction} placeholder="initiative number" />
+                      {/* <input id="initiative" key={player._id} onChange={mySortFunction} placeholder="initiative number" /> */}
             </h2>
             <Modal show={modelStatus.show} handleClose={hideModal}>
               <h2>{player.playerName}</h2>
