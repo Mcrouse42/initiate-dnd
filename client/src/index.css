@@ -1,10 +1,13 @@
+@import url(//db.onlinewebfonts.com/c/24a69b0d49de39034663d837a985f04b?family=BenguiatITCW01-BoldCn);
+
 :root {
   --primary: #497573;
-  --secondary: #99f7f2;
+  /* Sarah I altered --secondary from black to a random color */
+  --secondary: #38a034; 
   --tertiary: #b2c2c1;
-  --quatrinary: #cadbda;
-  --light: #e1f5f4;
-  --dark: #6c7575;
+  --quatrinary: #d1d1d1;
+  --light: #b7990d;
+  --dark: #000000;
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
   --spacing-one: calc(1rem * 0.25);
@@ -31,7 +34,7 @@ body {
   line-height: 1.5;
   font-size: 20px;
   color: var(--dark);
-  background-color: #f3fffee1;
+  background-color: #d1d1d1;
 }
 
 h1,
@@ -40,8 +43,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Karla', sans-serif;
-  font-weight: 700;
+  font-family: "BenguiatITCW01-BoldCn";
+  text-transform: uppercase;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 8rem;
   margin: 5px 0;
   line-height: 1.25;
 }

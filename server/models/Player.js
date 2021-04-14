@@ -33,32 +33,36 @@ const playerSchema = new Schema(
       required: true,
       trim: true
     },
-    statsModifier: [
-      {
-        playerStrengthStat: {type: Number},
-        playerStrengthModifier: {type: Number}
-      },
-      {
-        playerDexterityStat: {type: Number},
-        playerDexterityModifier: {type: Number}
-      },
-      {
-        playerConstitutionStat: {type: Number},
-        playerConstitutionModifier: {type: Number}
-      },
-      {
-        playerIntelligenceStat: {type: Number},
-        playerIntelligenceModifier: {type: Number}
-      },
-      {
-        playerWisdomStat: {type: Number},
-        playerWisdomModifier: {type: Number}
-      },
-      {
-        playerCharismaStat: {type: Number},
-        playerCharismaModifier: {type: Number}
-      },
-    ]
+    playerStrengthStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    playerDexterityStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    playerConstitutionStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    playerIntelligenceStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    playerWisdomStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
+    playerCharismaStat: {
+      type: Number,
+      required: true,
+      trim: true
+    },
   },
   {
     toJSON: {
@@ -67,6 +71,6 @@ const playerSchema = new Schema(
   }
 );
 
-const Player = model('Player', playerSchema);
+//const Player = model('Player', playerSchema);
 
-module.exports = Player;
+module.exports = playerSchema;

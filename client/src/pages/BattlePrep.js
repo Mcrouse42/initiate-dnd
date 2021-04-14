@@ -1,8 +1,8 @@
 import React from 'react';
-import PlayerList from "../components/PlayerList";
+import BattlePlayerList from "../components/BattlePlayerList";
 import { Redirect, useParams } from 'react-router-dom';
 
-import PlayerForm from '../components/PlayerForm';
+//import PlayerForm from '../components/PlayerForm';
 
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_DM, QUERY_ME } from '../utils/queries';
@@ -38,7 +38,6 @@ const Profile = () => {
     );
   }
   console.log(dungeonMaster.dungeonMaster);
-  console.log(dungeonMaster);
   console.log(dungeonMaster.players);
   
   return (
@@ -46,19 +45,18 @@ const Profile = () => {
       <div className="flex-row mb-3">
         <h2 className="bg-dark text-secondary p-3 display-inline-block">
           {/* THIS IS THE DM PROFILE */}
-          Viewing {`${dungeonMaster.dungeonMaster}'s`} profile.
+          Welcome to {`${dungeonMaster.dungeonMaster}'s`} Battle Prep!
         </h2>
       </div>
 
       <div className="flex-row justify-space-between mb-3">
         <div className="col-12 mb-3 col-lg-8">
-          <PlayerList
+          <BattlePlayerList
             players={dungeonMaster.players}
-            title={`${dungeonMaster.dungeonMaster}'s player...`}
           />
           </div>
         </div>
-        <div className="mb-3"><PlayerForm /></div>
+        
       </div>
   
   );
