@@ -1,6 +1,6 @@
 const DungeonMaster = require('./DungeonMaster');
-const Player = require('./Player');
+const PlayerSchema = require('./Player');
 // const Monster = require('./Monster');
 const monsterSchema = require('./Monster');
 
-module.exports = { DungeonMaster, Player, monsterSchema };
+module.exports = { DungeonMaster, PlayerSchema, monsterSchema };
