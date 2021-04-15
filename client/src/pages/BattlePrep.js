@@ -34,7 +34,7 @@ const BattlePrep = () => {
 
   if (!dungeonMaster?.dungeonMaster) {
     return (
-      <h4>
+      <h4 className="text-primary">
         You need to be logged in to see this page. Use the navigation links above to sign up or log in!
       </h4>
     );
