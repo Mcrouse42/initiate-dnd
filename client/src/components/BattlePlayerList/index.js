@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Modal from "../Modal";
+import PlayerList from "../PlayerList";
+import { Link } from 'react-router-dom';
 
 const BattlePlayerList = (props) => {
-  
-        const [modelStatus, setModalStatus] = useState({ show: false });
+    const [modelStatus, setModalStatus] = useState({ show: false });
     const [playersArray, setPlayersArray] = useState(props.players);
 
     let givePlayersInit = () => {
@@ -27,15 +29,15 @@ const BattlePlayerList = (props) => {
         console.log(playersArray);
         }
         else {
+            playersArray.map((player) => {
+            player.initiative = parseInt(document.getElementById(player.playerName).value)
+            });
         console.log(playersArray);
-        console.log(this);
-        // let newPlayersArray = playersArray.map(player => {
-        //     player.initiative = parseInt(document.getElementById(player.playerName).value)
-        // });
-        // console.log(newPlayersArray);
-        // newPlayersArray.sort(mySortFunction);
-        // console.log(newPlayersArray);
-        // setPlayersArray({playersArray: newPlayersArray});
+        // const hold = playersArray;
+        // setPlayersArray([]);
+        playersArray.sort(mySortFunction);
+        console.log(playersArray);
+        //setPlayersArray(playersArray);
     }
     }, [playersArray]);
 
@@ -57,13 +59,14 @@ const BattlePlayerList = (props) => {
     function sortPlayers () {
         playersArray.map((player) => {
             player.initiative = parseInt(document.getElementById(player.playerName).value)
-        });
+            });
         console.log(playersArray);
-        let newPlayersArray = playersArray.sort(mySortFunction);
-        console.log(newPlayersArray);
-        setPlayersArray(newPlayersArray);
-        console.log(this);
-    };
+        // const hold = playersArray;
+        // setPlayersArray([]);
+        playersArray.sort(mySortFunction);
+        setPlayersArray(playersArray);
+    }
+
 
   let showModal = () => {
     setModalStatus({ show: true });
@@ -77,6 +80,20 @@ function mySortFunction(a, b) {
         return b.initiative - a.initiative;
     };
 
+
+    function updateButton() {
+
+      setPlayersArray(playersArray.slice())
+      
+      playersArray.forEach((player) => {
+        console.log(document.getElementById(player.playerName));
+        console.log(document.getElementById(player.playerName).value);
+        document.getElementById(player.playerName).style.display = "none";
+        //document.getElementById(player.playerName).value = parseInt(player.initiative);
+        // document.getElementById(player.playerName).setAttribute("value", player.initiative);
+        // console.log(player);
+        });
+    }
 
 // useEffect(() => {
 //     playersArray.map((player) => {
@@ -108,6 +125,8 @@ return (
               <span onClick={showModal}> + </span>
                       <input id={player.playerName} onChange={sortPlayers} defaultValue = '0' name='playerInitiative' placeholder="initiative number" />
                       {/* <input id="initiative" onChange={mySortFunction()} placeholder="initiative number" /> */}
+
+                      {/* <input id={player.playerName} disabled /> */}
             </h2>
             <Modal show={modelStatus.show} handleClose={hideModal}>
               <h2>{player.playerName}</h2>
@@ -139,6 +158,18 @@ return (
           </div>
         </div>
       ))}
+      <button onClick={() => updateButton() }>UPDATE
+        {/* <PlayerList players={playersArray}/> */}
+        {/* <Link to="/profile">DM Profile</Link> */}
+        {/* <Link to="/generatenpc" players={playersArray} >Generate NPC</Link> */}
+        {/* <Link
+          to={{
+            pathname: "/battle",
+            state: {playersArray} // your data array of objects
+          }}
+        >Battle!</Link> */}
+      </button>
+
       {/* <button onClick={() => updatePlayerInit(playersArray)}>Update</button> */}
     </div>
   );

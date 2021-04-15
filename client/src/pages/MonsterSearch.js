@@ -54,7 +54,7 @@ const MonsterSearch = () => {
                 monsterName: monster.name,
                 monsterSize: monster.size,
                 monsterType: monster.type,
-                monsterImg: `../style/images/${monster.type}.png`,
+                //monsterImg: `../style/images/${monster.type}.png`, // this does not link to anything.  Throws errors.
                 monsterAlignment: monster.alignment,
                 // speed is an object - using only walk for now
                 monsterSpeed: monster.speed.walk,
@@ -149,6 +149,7 @@ const MonsterSearch = () => {
                                     <ListGroup.Item><h5>Constitution:</h5> {monster.monsterConstitutionStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Intelligence:</h5> {monster.monsterIntelligenceStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Charisma:</h5> {monster.monsterCharismaStat}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Wisdom:</h5> {monster.monsterWisdomStat}</ListGroup.Item>
                                     </ListGroup>
                                 </Card.Text>
                                 {/* <Table bordered size="sm">
