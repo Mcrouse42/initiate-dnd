@@ -99,6 +99,7 @@ const BattlePlayerList = (props) => {
 
 return (
     <div id="player-container">
+    <h3>Players</h3>
       {playersArray.map((player) => (
         <div key={player._id} className="card mb-3">
           <p className="card-header">
@@ -137,7 +138,7 @@ return (
           </div>
         </div>
       ))}
-      <button onClick={() => updateButton() }>UPDATE</button>
+      <button onClick={() => updateButton() }>SORT PLAYERS BY INITIATIVE</button>
         {/* <Link
           to={{
             pathname: "/battle",

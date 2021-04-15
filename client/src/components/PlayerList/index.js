@@ -42,7 +42,6 @@ const PlayerList = ({ players, title }) => {
                 <Card.Title><h2>{player.playerName}</h2></Card.Title>
               <Card.Text>
                 <ListGroup>
-                <ListGroupItem><p>player created on {player.createdAt}</p></ListGroupItem>
                 <ListGroupItem><h5>Player Race:</h5> {player.playerRace}</ListGroupItem>
                 <ListGroupItem><h5>Player Class:</h5> {player.playerClass}</ListGroupItem>
                 <ListGroupItem><h5>Player Level:</h5> {player.playerLevel}</ListGroupItem>
