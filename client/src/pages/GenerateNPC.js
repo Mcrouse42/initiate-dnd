@@ -183,7 +183,7 @@ const GenerateNPC = () => {
     return (
         <div>
             <div className="flex-row mb-3">
-                <h2 className="display-inline-block">
+                <h2 className="text-primary display-inline-block">
                     Random NPC Generator!
                 </h2>
             </div>

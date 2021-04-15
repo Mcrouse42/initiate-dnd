@@ -111,7 +111,7 @@ const MonsterSearch = () => {
             <div className="form">
             <Form onSubmit={handleFormSubmit}>
                 <Form.Group controlId="formMonster">
-                    <Form.Label>Find a Monster</Form.Label>
+                    <Form.Label><h3>Find a Monster</h3></Form.Label>
                     <Form.Control
                     placeholder="Enter monster name" 
                     name='searchInput'
