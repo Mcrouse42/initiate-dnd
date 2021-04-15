@@ -180,9 +180,7 @@ const MonsterSearch = () => {
                                     <Button
                                     disabled={savedMonsterNames?.some((savedMonsterName) => savedMonsterName === monster.monsterName)}
                                     onClick={() => handleSaveMonster(monster.monsterName)}>
-                                    {savedMonsterNames?.some((savedMonsterName) => savedMonsterName === monster.monsterName)
-                                        ? 'This monster has already been saved!'
-                                        : 'Save this Monster!'}
+                                    Save this Monster!
                                     </Button>
                                 )}
                             </Card.Body>
