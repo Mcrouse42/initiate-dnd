@@ -3,22 +3,22 @@ import Modal from "../Modal";
 
 const BattlePlayerList = (props) => {
     const [modelStatus, setModalStatus] = useState({ show: false });
-    const [playersArray, setPlayersArray] = useState(props.players);
+    // const [playersArray, setPlayersArray] = useState(props.players);
   
-    let givePlayersInit = () => {
+    // let givePlayersInit = () => {
 
-        let playerInitMap = playersArray.map(player => {
-            player.initiative = 0;
+    //     let playerInitMap = playersArray.map(player => {
+    //         player.initiative = 0;
 
-            return player
-        });
+    //         return player
+    //     });
 
-        setPlayersArray(playerInitMap);
-    }
+    //     setPlayersArray(playerInitMap);
+    // }
 
-    useEffect(() => {
-        givePlayersInit();
-    }, []);
+    // useEffect(() => {
+    //     givePlayersInit();
+    // }, []);
   
     // let updatePlayerInit = (playerNameValue, updatedInitValue) => {
     //   playersArray.map((player) => {
