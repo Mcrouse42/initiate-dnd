@@ -144,8 +144,8 @@ const MonsterSearch = () => {
                                     <ListGroup.Item><h5>Challenge:</h5> {monster.monsterChallenge}</ListGroup.Item>
                                     <ListGroup.Item><h5>Armor Class:</h5> {monster.monsterArmorClass}</ListGroup.Item>
                                     <ListGroup.Item><h5>Hit Points:</h5> {monster.monsterHitPoints}</ListGroup.Item>
-                                    <ListGroup.Item><h5>Strength:</h5> {monster.monsterStrengthStats}</ListGroup.Item>
-                                    <ListGroup.Item><h5>Dexterity:</h5> {monster.monsterDexterity}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Strength:</h5> {monster.monsterStrengthStat}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Dexterity:</h5> {monster.monsterDexterityStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Constitution:</h5> {monster.monsterConstitutionStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Intelligence:</h5> {monster.monsterIntelligenceStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Charisma:</h5> {monster.monsterCharismaStat}</ListGroup.Item>
