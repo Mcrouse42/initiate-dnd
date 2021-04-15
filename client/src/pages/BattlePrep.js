@@ -11,7 +11,7 @@ import Auth from '../utils/auth';
 
 //import { Player } from '../../../server/models';
 
-const Profile = () => {
+const BattlePrep = () => {
   const { dungeonMaster: userParam } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_DM : QUERY_ME, {
@@ -67,4 +67,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default BattlePrep;
