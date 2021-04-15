@@ -54,15 +54,15 @@ const MonsterSearch = () => {
                 monsterName: monster.name,
                 monsterSize: monster.size,
                 monsterType: monster.type,
-                monsterImg: `../style/images/${monster.type}.png`,
+                //monsterImg: `../style/images/${monster.type}.png`, // this does not link to anything.  Throws errors.
                 monsterAlignment: monster.alignment,
                 // speed is an object - using only walk for now
                 monsterSpeed: monster.speed.walk,
                 monsterChallenge: parseInt(monster.challenge_rating),
                 monsterArmorClass: monster.armor_class,
                 monsterHitPoints: monster.hit_points,
-                monsterStrengthStat: monster.strength,
-                monsterDexterityStat: monster.dexterity,
+                monsterStrengthStat: parseInt(monster.strength),
+                monsterDexterityStat: parseInt(monster.dexterity),
                 monsterConstitutionStat: monster.constitution,
                 monsterIntelligenceStat: monster.intelligence,
                 monsterWisdomStat: monster.wisdom,
@@ -111,7 +111,7 @@ const MonsterSearch = () => {
             <div className="form">
             <Form onSubmit={handleFormSubmit}>
                 <Form.Group controlId="formMonster">
-                    <Form.Label>Find a Monster</Form.Label>
+                    <Form.Label><h3 className="text-primary">Find a Monster</h3></Form.Label>
                     <Form.Control
                     placeholder="Enter monster name" 
                     name='searchInput'
@@ -132,7 +132,7 @@ const MonsterSearch = () => {
                     return (
                         <Grid item xs={12} sm={6} md={4}>
                         <Card className="card" key={monster.monsterName}>
-                            <CardImg className="justify-center align-center" src={`./images/${monster.monsterType}.png`}></CardImg>
+                            <CardImg className="card-img" src={`./images/${monster.monsterType}.png`}></CardImg>
                             <Card.Body class="card-body">
                                 <Card.Title class="card-title"><h2 className="text-center">{monster.monsterName}</h2></Card.Title>
                                 <Card.Text>
@@ -144,11 +144,12 @@ const MonsterSearch = () => {
                                     <ListGroup.Item><h5>Challenge:</h5> {monster.monsterChallenge}</ListGroup.Item>
                                     <ListGroup.Item><h5>Armor Class:</h5> {monster.monsterArmorClass}</ListGroup.Item>
                                     <ListGroup.Item><h5>Hit Points:</h5> {monster.monsterHitPoints}</ListGroup.Item>
-                                    <ListGroup.Item><h5>Strength:</h5> {monster.monsterStrengthStats}</ListGroup.Item>
-                                    <ListGroup.Item><h5>Dexterity:</h5> {monster.monsterDexterity}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Strength:</h5> {monster.monsterStrengthStat}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Dexterity:</h5> {monster.monsterDexterityStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Constitution:</h5> {monster.monsterConstitutionStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Intelligence:</h5> {monster.monsterIntelligenceStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Charisma:</h5> {monster.monsterCharismaStat}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Wisdom:</h5> {monster.monsterWisdomStat}</ListGroup.Item>
                                     </ListGroup>
                                 </Card.Text>
                                 {/* <Table bordered size="sm">
@@ -179,9 +180,7 @@ const MonsterSearch = () => {
                                     <Button
                                     disabled={savedMonsterNames?.some((savedMonsterName) => savedMonsterName === monster.monsterName)}
                                     onClick={() => handleSaveMonster(monster.monsterName)}>
-                                    {savedMonsterNames?.some((savedMonsterName) => savedMonsterName === monster.monsterName)
-                                        ? 'This monster has already been saved!'
-                                        : 'Save this Monster!'}
+                                    Save this Monster!
                                     </Button>
                                 )}
                             </Card.Body>

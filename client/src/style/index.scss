@@ -1,8 +1,6 @@
 @import './variables';
 @import './mixins';
-@import './header';
-@import './footer';
-
+@import './modal';
 
 * {
     box-sizing: border-box;
@@ -22,10 +20,12 @@ body {
     font-size: 20px;
     color: $black;
     background-color: $lightGrey;
+    text-transform: capitalize;
+    background-image: url('./img/backgroundimg.png');
 }
 
 h1 {
-    font-family: "BenguiatITCW01-BoldCn";
+    font-family: "BrianJames";
     text-transform: uppercase;
     font-weight: 800;
     font-style: normal;
@@ -45,12 +45,13 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "BenguiatITCW01-BoldCn";
+    font-family: "BrianJames";
     font-weight: 800;
     font-style: normal;
     font-size: 8rem;
     margin: 5px 0;
     line-height: 1.25;
+    text-transform: capitalize;
 }
 
 h1 {
@@ -77,6 +78,7 @@ h6 {
   font-size: 1rem;
 }
 
+
 p {
   font-size: 1.1rem;
   margin-top: 0;
@@ -100,6 +102,7 @@ nav a {
   padding: 6px 10px;
   margin: 0 15px;
   transition: all 0.2s;
+  border-radius: $borderRadius;
 }
 
 nav a:hover {
@@ -119,8 +122,8 @@ nav a:hover {
   font-size: 1.3rem;
   text-decoration: none;
   font-family: $bodyFont;
-  padding: 0.5rem 1.2rem;
-  margin: 5px 0;
+  padding: 7.5px 10px;
+  margin: 3px 3px 10px 3px;
   border-radius: $borderRadius;
   border: none;
   color: $dark;
@@ -142,11 +145,13 @@ nav a:hover {
 /* CARDS */
 .card {
   margin: 10px 10px;
-  padding: 20px 0px;
+  padding: 20px 20px 0px 20px;
   border: 3px solid $black;
   border-radius: $borderRadius;
-  background-color: $curry;
+  background-color: $curry; 
   color: $black;
+  // text-align: center;
+
   
 }
 
@@ -154,12 +159,21 @@ nav a:hover {
   color: $black;
   margin: 0;
   background-color: $curry;
-  padding: 0.625rem;
+  padding: 0px 10px;
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
 
+.card-img {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 5px;
+  margin: auto;
+}
+
 .card-body {
-  padding: 2.5%;
+  padding: 10px 10px 0px 10px;
   font-size: 1.4rem;
 }
 
@@ -170,9 +184,14 @@ nav a:hover {
 .form-textarea {
   display: block;
   justify-content: center;
+  border-radius: $borderRadius;
+  background-color: none;
+  color: $black;
+
 }
 
 .form-label {
+  color: $alabaster;
   font-size: 1.2rem;
   margin: 0.625rem 0 0.25rem;
 }

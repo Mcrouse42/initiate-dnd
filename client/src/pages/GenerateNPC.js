@@ -9,6 +9,9 @@ import React from 'react';
 // import Auth from '../utils/auth';
 // //import { Player } from '../../../server/models';
 
+//import style componenets from react-bootstrap
+import { Card, ListGroup } from 'react-bootstrap';
+
 const GenerateNPC = () => {
     const classes = [
         "Barbarian",
@@ -180,34 +183,34 @@ const GenerateNPC = () => {
     return (
         <div>
             <div className="flex-row mb-3">
-                <h2 className="bg-dark text-secondary p-3 display-inline-block">
+                <h2 className="text-primary display-inline-block">
                     Random NPC Generator!
                 </h2>
             </div>
 
             <div className="flex-row justify-space-between mb-3">
                 <div className="col-12 mb-3 col-lg-8">
-                    <ul>
-                        <li>First Name: {npcFirstName}</li>
-                        <li>Last Name: {npcLastName}</li>
-                        <li>Gender: {npcGender}</li>
-                        <li>Eye Color: {npcEyeColor}</li>
-                        <li>Class: {npcClass}</li>
-                        <li>Race: {npcRace}</li>
-                        <li>Armor Class: {npcArmorClass}</li>
-                        <li>Hit Points: {npcHitPoints}</li>
-                        <li>Strength: {npcStrengthStat}</li>
-                        <li>Dexterity: {npcDexterityStat}</li>
-                        <li>Constitution: {npcConstitutionStat}</li>
-                        <li>Intelligence: {npcIntelligenceStat}</li>
-                        <li>Wisdom: {npcWisdomStat}</li>
-                        <li>Charisma: {npcCharismaStat}</li>
-                        <li>Personality Traits:</li>
-                        <li>{npcPersonalityTraits[0]}</li>
-                        <li>{npcPersonalityTraits[1]}</li>
-                        <li>{npcPersonalityTraits[2]}</li>
-                        <li>{npcPersonalityTraits[3]}</li>
-                    </ul>
+                    <Card className="p-3">
+                        <ListGroup.Item><h5>First Name:</h5> {npcFirstName}</ListGroup.Item>
+                        <ListGroup.Item><h5>Last Name:</h5> {npcLastName}</ListGroup.Item>
+                        <ListGroup.Item><h5>Gender:</h5> {npcGender}</ListGroup.Item>
+                        <ListGroup.Item><h5>Eye Color:</h5> {npcEyeColor}</ListGroup.Item>
+                        <ListGroup.Item><h5>Class:</h5> {npcClass}</ListGroup.Item>
+                        <ListGroup.Item><h5>Race:</h5> {npcRace}</ListGroup.Item>
+                        <ListGroup.Item><h5>Armor Class:</h5> {npcArmorClass}</ListGroup.Item>
+                        <ListGroup.Item><h5>Hit Points:</h5> {npcHitPoints}</ListGroup.Item>
+                        <ListGroup.Item><h5>Strength:</h5> {npcStrengthStat}</ListGroup.Item>
+                        <ListGroup.Item><h5>Dexterity:</h5> {npcDexterityStat}</ListGroup.Item>
+                        <ListGroup.Item><h5>Constitution:</h5> {npcConstitutionStat}</ListGroup.Item>
+                        <ListGroup.Item><h5>Intelligence:</h5> {npcIntelligenceStat}</ListGroup.Item>
+                        <ListGroup.Item><h5>Wisdom:</h5> {npcWisdomStat}</ListGroup.Item>
+                        <ListGroup.Item><h5>Charisma:</h5> {npcCharismaStat}</ListGroup.Item>
+                        <ListGroup.Item><h5>Personality Traits:</h5></ListGroup.Item>
+                        <ListGroup.Item>{npcPersonalityTraits[0]}</ListGroup.Item>
+                        <ListGroup.Item>{npcPersonalityTraits[1]}</ListGroup.Item>
+                        <ListGroup.Item>{npcPersonalityTraits[2]}</ListGroup.Item>
+                        <ListGroup.Item>{npcPersonalityTraits[3]}</ListGroup.Item>
+                    </Card>
                 </div>
             </div>
         </div>

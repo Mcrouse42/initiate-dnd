@@ -5,7 +5,7 @@ const monsterSchema = new Schema(
     monsterName: {
       type: String,
       required: true,
-      unique: true,
+      // unique: true,
       trim: true
     },
     monsterSize: {

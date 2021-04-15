@@ -1,5 +1,6 @@
 import React from 'react';
 import PlayerList from "../components/PlayerList";
+import MonsterList from '../components/MonsterList';
 import { Redirect, useParams } from 'react-router-dom';
 
 import PlayerForm from '../components/PlayerForm';
@@ -32,7 +33,7 @@ const Profile = () => {
 
   if (!dungeonMaster?.dungeonMaster) {
     return (
-      <h4>
+      <h4 className="text-primary">
         You need to be logged in to see this page. Use the navigation links above to sign up or log in!
       </h4>
     );
@@ -44,17 +45,21 @@ const Profile = () => {
   return (
     <div>
       <div className="flex-row mb-3">
-        <h2 className="bg-dark text-secondary p-3 display-inline-block">
+        <h2 className="text-primary p-3 display-inline-block">
           {/* THIS IS THE DM PROFILE */}
-          Viewing {`${dungeonMaster.dungeonMaster}'s`} profile.
+          Viewing {`${dungeonMaster.dungeonMaster}'s`} profile
         </h2>
       </div>
 
       <div className="flex-row justify-space-between mb-3">
-        <div className="col-12 mb-3 col-lg-8">
+        <div className="text-primary col-12 mb-3 col-lg-8">
           <PlayerList
             players={dungeonMaster.players}
             title={`${dungeonMaster.dungeonMaster}'s player...`}
+          />
+          <MonsterList
+            monsters={dungeonMaster.monsters}
+            title={`${dungeonMaster.dungeonMaster}'s monster...`}
           />
           </div>
         </div>
