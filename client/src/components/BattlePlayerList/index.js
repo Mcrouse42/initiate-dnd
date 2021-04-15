@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Modal from "../Modal";
 
 const BattlePlayerList = (props) => {
@@ -8,15 +8,46 @@ const BattlePlayerList = (props) => {
     let givePlayersInit = () => {
         let playerInitMap = playersArray.map(player => {
             player.initiative = 0;
+            console.log(typeof(player.initiative));
+            console.log(player);
             return player
         });
 
         setPlayersArray(playerInitMap);
     }
-
+    console.log(playersArray);
+    const firstUpdate = useRef(true);
+  
     useEffect(() => {
+        console.log(firstUpdate);
+        if (firstUpdate.current) {
+        firstUpdate.current = false;
         givePlayersInit();
-    }, []);
+        console.log(playersArray);
+        }
+        else {
+            playersArray.map((player) => {
+            player.initiative = parseInt(document.getElementById(player.playerName).value)
+            });
+        console.log(playersArray);
+        playersArray.sort(mySortFunction);
+        console.log(playersArray);
+        setPlayersArray(playersArray);
+    }
+    }, [playersArray]);
+    
+    // useEffect(() => {
+    //     givePlayersInit();
+    // }, []);
+
+    function sortPlayers () {
+        playersArray.map((player) => {
+            player.initiative = parseInt(document.getElementById(player.playerName).value)
+            });
+        console.log(playersArray);
+        playersArray.sort(mySortFunction);
+        setPlayersArray(playersArray);
+    }
 
   let showModal = () => {
     setModalStatus({ show: true });
@@ -26,33 +57,41 @@ const BattlePlayerList = (props) => {
       setModalStatus({ show: false });
   };
 
-  // ZK ATTEMPTS:
+function mySortFunction(a, b) {
+        return b.initiative - a.initiative;
+    };
 
-//   let mySortFunction = (playersArray) => {
-//     let a = a.player;
-//     let b = b.player;
-//     playersArray.sort((a, b) => (b.initiative - a.initiative));
-//     console.log('my SortFunction');
+
+// useEffect(() => {
+//     playersArray.map((player) => {
+//         player.initiative = parseInt(document.getElementById(player.playerName).value)
+//     });
+//     console.log(playersArray);
+//     playersArray.sort(mySortFunction);
+//     console.log(playersArray);
+// }, [playersArray]);
+
+// let updatePlayerInit = (playerId) => {
+//     console.log(playerId);
+//     playersArray.map((player) => {
+//         player.initiative = parseInt(document.getElementById(player.playerName).value)
+//     });
+//     console.log(playersArray);
+//     playersArray.sort(mySortFunction);
+//     console.log(playersArray);
 // };
-
-const mySortFunction = () => {
-        console.log(document.getElementById('initiative').value);
-        let initiatve = document.getElementById('initiative').value;
-        playersArray.sort(function(a, b) {
-        return a.initiative - b.initiative;
-    });
-};
 
 
 return (
-    <div>
+    <div id="player-container">
       {playersArray.map((player) => (
         <div key={player._id} className="card mb-3">
           <p className="card-header">
             <h2>
               {player.playerName}
               <span onClick={showModal}> + </span>
-                      <input id="initiative" onChange={mySortFunction} placeholder="initiative number" />
+                      <input id={player.playerName} onChange={sortPlayers} defaultValue = '0' name='playerInitiative' placeholder="initiative number" />
+                      {/* <input id="initiative" onChange={mySortFunction()} placeholder="initiative number" /> */}
             </h2>
             <Modal show={modelStatus.show} handleClose={hideModal}>
               <h2>{player.playerName}</h2>
@@ -84,6 +123,7 @@ return (
           </div>
         </div>
       ))}
+      {/* <button onClick={() => updatePlayerInit(playersArray)}>Update</button> */}
     </div>
   );
 };
