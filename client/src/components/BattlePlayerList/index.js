@@ -1,118 +1,100 @@
-
+// Import required items from react and external
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Modal from "../Modal";
-import PlayerList from "../PlayerList";
-import { Link } from 'react-router-dom';
 
 const BattlePlayerList = (props) => {
-    const [modelStatus, setModalStatus] = useState({ show: false });
-    const [playersArray, setPlayersArray] = useState(props.players);
+  const [modelStatus, setModalStatus] = useState({ show: false });
+  const [playersArray, setPlayersArray] = useState(props.players);
 
-    let givePlayersInit = () => {
-        let playerInitMap = playersArray.map(player => {
-            player.initiative = 0;
-            console.log(typeof(player.initiative));
-            console.log(player);
-            return player
-        });
+  // ------------------------------------------------ INITIALIZE ------------------------------------------------
+  // When page is initially loaded, set the player initiative to 0
+  let givePlayersInit = () => {
+      let playerInitMap = playersArray.map(player => {
+          player.initiative = 0;
+          return player
+      });
 
-        setPlayersArray(playerInitMap);
+      // set state to the player init map which marks all initiative as 0
+      setPlayersArray(playerInitMap);
+  }
+  //console.log(playersArray);
+
+
+  // ------------------------------------------------ USE EFFECT ------------------------------------------------
+  // set value to track when it is the first time initializing or not
+  const firstUpdate = useRef(true);
+  // use effect to track changes to the array playersArray
+  useEffect(() => {
+    console.log(firstUpdate);
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      givePlayersInit();
+      console.log(playersArray);
     }
-    console.log(playersArray);
-    const firstUpdate = useRef(true);
-  
-    useEffect(() => {
-        console.log(firstUpdate);
-        if (firstUpdate.current) {
-        firstUpdate.current = false;
-        givePlayersInit();
-        console.log(playersArray);
-        }
-        else {
-            playersArray.map((player) => {
-            player.initiative = parseInt(document.getElementById(player.playerName).value)
-            });
-        console.log(playersArray);
+    else {
+      playersArray.map((player) => {
+        player.initiative = parseInt(document.getElementById(player.playerName).value)
+      });
+      console.log(playersArray);
         // const hold = playersArray;
         // setPlayersArray([]);
-        playersArray.sort(mySortFunction);
-        console.log(playersArray);
+      playersArray.sort(mySortFunction);
+      console.log(playersArray);
         //setPlayersArray(playersArray);
     }
-    }, [playersArray]);
+  }, [playersArray]);
 
-    useLayoutEffect(() => {
-        console.log('layer effect');
-        console.log(playersArray);
-    }, [playersArray]);
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevState.) !== this.state. {
-    //         console.log('state has changed')
-    //     }
-    // }
+  // ------------------------------------------------ STYLE ------------------------------------------------
+  useLayoutEffect(() => {
+    console.log('layer effect');
+    console.log(playersArray);
+  }, [playersArray]);
+
+  // ------------------------------------------------ SORTING FUNCTIONS ------------------------------------------------
+  // function to sort the players in the playersArray based on their user provided initiative, calls mySortFunction
+  function sortPlayers () {
+    playersArray.map((player) => {
+      player.initiative = parseInt(document.getElementById(player.playerName).value)
+    });
     
-    // useEffect(() => {
-    //     givePlayersInit();
-    // }, []);
+    console.log(playersArray);
+    playersArray.sort(mySortFunction);
+    setPlayersArray(playersArray);
+  }
 
-    function sortPlayers () {
-        playersArray.map((player) => {
-            player.initiative = parseInt(document.getElementById(player.playerName).value)
-            });
-        console.log(playersArray);
-        // const hold = playersArray;
-        // setPlayersArray([]);
-        playersArray.sort(mySortFunction);
-        setPlayersArray(playersArray);
-    }
+  // function to sort incoming array
+  function mySortFunction(a, b) {
+    return b.initiative - a.initiative;
+  };
 
+  // ------------------------------------------------ UPDATE INITIATIVE ORDER ------------------------------------------------
+  // function takes the button click and updates the player array.  The .slice forces a state update which then rerenders the JSX
+  function updateButton() {
+    setPlayersArray(playersArray.slice())
+      
+    playersArray.forEach((player) => {
+      //console.log(document.getElementById(player.playerName));
+      //console.log(document.getElementById(player.playerName).value);
 
+      // remove the textbox after initiative order is achieved
+      document.getElementById(player.playerName).style.display = "none";
+      //document.getElementById(player.playerName).value = parseInt(player.initiative);
+      // document.getElementById(player.playerName).setAttribute("value", player.initiative);
+      // console.log(player);
+    });
+  }
+
+  // ------------------------------------------------ MODAL CONTROL ------------------------------------------------
+    // function to show modal
   let showModal = () => {
     setModalStatus({ show: true });
   };
 
+  // function to hide modal
   let hideModal = () => {
       setModalStatus({ show: false });
   };
-
-function mySortFunction(a, b) {
-        return b.initiative - a.initiative;
-    };
-
-
-    function updateButton() {
-
-      setPlayersArray(playersArray.slice())
-      
-      playersArray.forEach((player) => {
-        console.log(document.getElementById(player.playerName));
-        console.log(document.getElementById(player.playerName).value);
-        document.getElementById(player.playerName).style.display = "none";
-        //document.getElementById(player.playerName).value = parseInt(player.initiative);
-        // document.getElementById(player.playerName).setAttribute("value", player.initiative);
-        // console.log(player);
-        });
-    }
-
-// useEffect(() => {
-//     playersArray.map((player) => {
-//         player.initiative = parseInt(document.getElementById(player.playerName).value)
-//     });
-//     console.log(playersArray);
-//     playersArray.sort(mySortFunction);
-//     console.log(playersArray);
-// }, [playersArray]);
-
-// let updatePlayerInit = (playerId) => {
-//     console.log(playerId);
-//     playersArray.map((player) => {
-//         player.initiative = parseInt(document.getElementById(player.playerName).value)
-//     });
-//     console.log(playersArray);
-//     playersArray.sort(mySortFunction);
-//     console.log(playersArray);
-// };
 
 
 return (
@@ -124,9 +106,6 @@ return (
               {player.playerName}
               <span onClick={showModal}> + </span>
                       <input id={player.playerName} onChange={sortPlayers} defaultValue = '0' name='playerInitiative' placeholder="initiative number" />
-                      {/* <input id="initiative" onChange={mySortFunction()} placeholder="initiative number" /> */}
-
-                      {/* <input id={player.playerName} disabled /> */}
             </h2>
             <Modal show={modelStatus.show} handleClose={hideModal}>
               <h2>{player.playerName}</h2>
@@ -158,19 +137,13 @@ return (
           </div>
         </div>
       ))}
-      <button onClick={() => updateButton() }>UPDATE
-        {/* <PlayerList players={playersArray}/> */}
-        {/* <Link to="/profile">DM Profile</Link> */}
-        {/* <Link to="/generatenpc" players={playersArray} >Generate NPC</Link> */}
+      <button onClick={() => updateButton() }>UPDATE</button>
         {/* <Link
           to={{
             pathname: "/battle",
             state: {playersArray} // your data array of objects
           }}
         >Battle!</Link> */}
-      </button>
-
-      {/* <button onClick={() => updatePlayerInit(playersArray)}>Update</button> */}
     </div>
   );
 };
