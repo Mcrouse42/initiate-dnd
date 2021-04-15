@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Modal from "../Modal";
 
 const BattlePlayerList = (props) => {
-    const [modelStatus, setModalStatus] = useState({ show: false });
+  
+        const [modelStatus, setModalStatus] = useState({ show: false });
     const [playersArray, setPlayersArray] = useState(props.players);
 
     let givePlayersInit = () => {
@@ -26,15 +27,28 @@ const BattlePlayerList = (props) => {
         console.log(playersArray);
         }
         else {
-            playersArray.map((player) => {
-            player.initiative = parseInt(document.getElementById(player.playerName).value)
-            });
         console.log(playersArray);
-        playersArray.sort(mySortFunction);
-        console.log(playersArray);
-        setPlayersArray(playersArray);
+        console.log(this);
+        // let newPlayersArray = playersArray.map(player => {
+        //     player.initiative = parseInt(document.getElementById(player.playerName).value)
+        // });
+        // console.log(newPlayersArray);
+        // newPlayersArray.sort(mySortFunction);
+        // console.log(newPlayersArray);
+        // setPlayersArray({playersArray: newPlayersArray});
     }
     }, [playersArray]);
+
+    useLayoutEffect(() => {
+        console.log('layer effect');
+        console.log(playersArray);
+    }, [playersArray]);
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevState.) !== this.state. {
+    //         console.log('state has changed')
+    //     }
+    // }
     
     // useEffect(() => {
     //     givePlayersInit();
@@ -43,11 +57,13 @@ const BattlePlayerList = (props) => {
     function sortPlayers () {
         playersArray.map((player) => {
             player.initiative = parseInt(document.getElementById(player.playerName).value)
-            });
+        });
         console.log(playersArray);
-        playersArray.sort(mySortFunction);
-        setPlayersArray(playersArray);
-    }
+        let newPlayersArray = playersArray.sort(mySortFunction);
+        console.log(newPlayersArray);
+        setPlayersArray(newPlayersArray);
+        console.log(this);
+    };
 
   let showModal = () => {
     setModalStatus({ show: true });
