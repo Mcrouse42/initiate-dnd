@@ -3,7 +3,7 @@ import Modal from "../Modal";
 
 const BattlePlayerList = (props) => {
     const [modelStatus, setModalStatus] = useState({ show: false });
-    // const [playersArray, setPlayersArray] = useState(props.players);
+    const [playersArray, setPlayersArray] = useState(props.players);
   
     // let givePlayersInit = () => {
 
