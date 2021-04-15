@@ -1,5 +1,6 @@
 import React from 'react';
 import PlayerList from "../components/PlayerList";
+import MonsterList from '../components/MonsterList';
 import { Redirect, useParams } from 'react-router-dom';
 
 import PlayerForm from '../components/PlayerForm';
@@ -55,6 +56,10 @@ const Profile = () => {
           <PlayerList
             players={dungeonMaster.players}
             title={`${dungeonMaster.dungeonMaster}'s player...`}
+          />
+          <MonsterList
+            monsters={dungeonMaster.monsters}
+            title={`${dungeonMaster.dungeonMaster}'s monster...`}
           />
           </div>
         </div>

@@ -54,15 +54,15 @@ const MonsterSearch = () => {
                 monsterName: monster.name,
                 monsterSize: monster.size,
                 monsterType: monster.type,
-                monsterImg: `../style/images/${monster.type}.png`,
+                //monsterImg: `../style/images/${monster.type}.png`, // this does not link to anything.  Throws errors.
                 monsterAlignment: monster.alignment,
                 // speed is an object - using only walk for now
                 monsterSpeed: monster.speed.walk,
                 monsterChallenge: parseInt(monster.challenge_rating),
                 monsterArmorClass: monster.armor_class,
                 monsterHitPoints: monster.hit_points,
-                monsterStrengthStat: monster.strength,
-                monsterDexterityStat: monster.dexterity,
+                monsterStrengthStat: parseInt(monster.strength),
+                monsterDexterityStat: parseInt(monster.dexterity),
                 monsterConstitutionStat: monster.constitution,
                 monsterIntelligenceStat: monster.intelligence,
                 monsterWisdomStat: monster.wisdom,
@@ -144,11 +144,12 @@ const MonsterSearch = () => {
                                     <ListGroup.Item><h5>Challenge:</h5> {monster.monsterChallenge}</ListGroup.Item>
                                     <ListGroup.Item><h5>Armor Class:</h5> {monster.monsterArmorClass}</ListGroup.Item>
                                     <ListGroup.Item><h5>Hit Points:</h5> {monster.monsterHitPoints}</ListGroup.Item>
-                                    <ListGroup.Item><h5>Strength:</h5> {monster.monsterStrengthStats}</ListGroup.Item>
-                                    <ListGroup.Item><h5>Dexterity:</h5> {monster.monsterDexterity}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Strength:</h5> {monster.monsterStrengthStat}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Dexterity:</h5> {monster.monsterDexterityStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Constitution:</h5> {monster.monsterConstitutionStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Intelligence:</h5> {monster.monsterIntelligenceStat}</ListGroup.Item>
                                     <ListGroup.Item><h5>Charisma:</h5> {monster.monsterCharismaStat}</ListGroup.Item>
+                                    <ListGroup.Item><h5>Wisdom:</h5> {monster.monsterWisdomStat}</ListGroup.Item>
                                     </ListGroup>
                                 </Card.Text>
                                 {/* <Table bordered size="sm">
