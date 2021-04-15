@@ -5,7 +5,7 @@ const playerSchema = new Schema(
     playerName: {
       type: String,
       required: true,
-      unique: true,
+      //unique: true,
       trim: true
     },
     playerClass: {

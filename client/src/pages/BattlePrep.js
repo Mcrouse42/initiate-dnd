@@ -1,5 +1,6 @@
 import React from 'react';
 import BattlePlayerList from "../components/BattlePlayerList";
+import BattleMonsterList from '../components/BattleMonsterList';
 import { Redirect, useParams } from 'react-router-dom';
 
 //import PlayerForm from '../components/PlayerForm';
@@ -7,9 +8,10 @@ import { Redirect, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_DM, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
+
 //import { Player } from '../../../server/models';
 
-const Profile = () => {
+const BattlePrep = () => {
   const { dungeonMaster: userParam } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_DM : QUERY_ME, {
@@ -54,6 +56,9 @@ const Profile = () => {
           <BattlePlayerList
             players={dungeonMaster.players}
           />
+          <BattleMonsterList
+            monsters={dungeonMaster.monsters}
+          />
           </div>
         </div>
         
@@ -62,4 +67,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default BattlePrep;
