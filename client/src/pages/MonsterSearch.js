@@ -132,7 +132,7 @@ const MonsterSearch = () => {
                     return (
                         <Grid item xs={12} sm={6} md={4}>
                         <Card className="card" key={monster.monsterName}>
-                            <CardImg className="justify-center align-center" src={`./images/${monster.monsterType}.png`}></CardImg>
+                            <CardImg className="card-img" src={`./images/${monster.monsterType}.png`}></CardImg>
                             <Card.Body class="card-body">
                                 <Card.Title class="card-title"><h2 className="text-center">{monster.monsterName}</h2></Card.Title>
                                 <Card.Text>
