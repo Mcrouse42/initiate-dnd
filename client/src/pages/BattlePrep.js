@@ -43,7 +43,7 @@ const Profile = () => {
   return (
     <div>
       <div className="flex-row mb-3">
-        <h2 className="p-3 display-inline-block">
+        <h2 className="text-primary p-3 display-inline-block">
           {/* THIS IS THE DM PROFILE */}
           Welcome to {`${dungeonMaster.dungeonMaster}'s`} Battle Prep!
         </h2>

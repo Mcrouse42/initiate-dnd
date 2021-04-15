@@ -78,10 +78,10 @@ return (
           </p>
           <div className="card-body">
             <div className="card mb-3">
-              <p>Player AC: {player.playerArmorClass}</p>
+              <p><h3>Player AC:</h3> {player.playerArmorClass}</p>
               <form>
-                <label htmlFor="playerHitPoints">Player HP:</label>
-                <input
+                <label htmlFor="playerHitPoints"><h3>Player HP:</h3></label>
+                <input className="my-2"
                   id="playerHitPoints"
                   placeholder={player.playerHitPoints}
                   input="number"
