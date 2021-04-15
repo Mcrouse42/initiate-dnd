@@ -8,7 +8,7 @@
     text-transform: uppercase;
     font-weight: 800;
     font-style: normal;
-    font-size: 8rem;
+    font-size: 10rem;
     text-shadow: -0.05rem -0.05rem 1px rgba(237, 43, 18, 1),
     0.05rem -0.05rem 1px rgba(237, 43, 18, 1),
     -0.05rem 0.05rem 1px rgba(237, 43, 18, 1),
@@ -19,4 +19,7 @@
     line-height: 1.25;
 }
 
-@mixin 
+@mixin gradient {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(183,153,13,1) 35%, rgba(245,245,245,1) 100%);
+}

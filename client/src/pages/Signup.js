@@ -39,7 +39,7 @@ const Signup = () => {
         <div className='card'>
           <h4 className='card-header'>Sign Up</h4>
           <div className='card-body'>
-            <form onSubmit={handleFormSubmit}>
+            <form className="form" onSubmit={handleFormSubmit}>
               <input
                 className='form-input'
                 placeholder='Your Dungeon Master Name'
