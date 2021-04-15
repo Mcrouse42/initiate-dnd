@@ -10,13 +10,23 @@
   .modal-main {
     position:fixed;
     color: $light;
-    width: 80%;
+    width: 60%;
     height: auto;
     top:50%;
     left:50%;
+    border: 3px solid $dark;
+    border-radius: $borderRadius;
     padding: 10px 20px;
     transform: translate(-50%,-50%);
     background-image: url('./img/backgroundimg.png');
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+  }
+
+  .modal-img {
+    background-color: $curry;
+    margin: 0;
+    border: 2px solid $alabaster;
   }
   
   .display-block {

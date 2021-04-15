@@ -137,9 +137,9 @@ const PlayerForm = () => {
 
     return (
         <div className="col-12 mb-3 col-lg-8">
-            <h2>Enter A New Player</h2>
+            <h2 className="text-primary">Enter A New Player</h2>
                 <form>
-                    <label htmlFor="playerName">Player Name:</label>
+                    <label className="form-label" htmlFor="playerName">Player Name:</label>
                     <input
                         className='form-input'
                         placeholder="Lars Cenny"
@@ -149,7 +149,7 @@ const PlayerForm = () => {
                         value={formState.playerName}
                         onChange={handleChange}                       
                     />
-                    <label htmlFor="playerRace">Player Race:</label>
+                    <label className="form-label" htmlFor="playerRace">Player Race:</label>
                     <input
                         className='form-input'
                         placeholder="Dragonborn"
@@ -159,7 +159,7 @@ const PlayerForm = () => {
                         value={formState.playerRace}
                         onChange={handleChange}
                     />
-                    <label htmlFor="playerClass">Player Class:</label>
+                    <label className="form-label" htmlFor="playerClass">Player Class:</label>
                     <input
                         className='form-input'
                         placeholder="Rogue"
@@ -169,7 +169,7 @@ const PlayerForm = () => {
                         value={formState.playerClass}
                         onChange={handleChange}
                     />
-                    <label htmlFor="playerLevel">Player Level:</label>
+                    <label className="form-label" htmlFor="playerLevel">Player Level:</label>
                     <input
                         className='form-input'
                         placeholder="3"
@@ -179,7 +179,7 @@ const PlayerForm = () => {
                         value={formState.playerLevel}
                         onChange={handleChange}
                     />
-                    <label htmlFor="playerArmorClass">Player Armor Class:</label>
+                    <label className="form-label" htmlFor="playerArmorClass">Player Armor Class:</label>
                     <input
                         className='form-input'
                         placeholder="12"
@@ -189,7 +189,7 @@ const PlayerForm = () => {
                         value={formState.playerArmorClass}
                         onChange={handleChange}
                     />
-                    <label htmlFor="playerHitPoints">Player Hit Points:</label>
+                    <label className="form-label" htmlFor="playerHitPoints">Player Hit Points:</label>
                     <input
                         className='form-input'
                         placeholder="19"
@@ -199,7 +199,7 @@ const PlayerForm = () => {
                         value={formState.playerHitPoints}
                         onChange={handleChange}
                     />
-                    <label htmlFor="playerStrengthStat">Player Strength:</label>
+                    <label className="form-label" htmlFor="playerStrengthStat">Player Strength:</label>
                     <input
                         className='form-input'
                         placeholder="14"
@@ -209,7 +209,7 @@ const PlayerForm = () => {
                         value={formState.playerStrengthStat}
                         onChange={handleChange}
                     />
-                    <label htmlFor="playerDexterityStat">Player Dexterity:</label>
+                    <label className="form-label" htmlFor="playerDexterityStat">Player Dexterity:</label>
                     <input
                         className='form-input'
                         placeholder="12"
@@ -219,7 +219,7 @@ const PlayerForm = () => {
                         value={formState.playerDexterityStat}
                         onChange={handleChange}
                     />
-                    <label htmlFor="playerConstitutionStat">Player Constitution:</label>
+                    <label className="form-label" htmlFor="playerConstitutionStat">Player Constitution:</label>
                     <input
                         className='form-input'
                         placeholder="11"
@@ -229,7 +229,7 @@ const PlayerForm = () => {
                         value={formState.playerConstitutionStat}
                         onChange={handleChange}
                     />
-                    <label htmlFor="playerIntelligenceStat">Player Intelligence:</label>
+                    <label className="form-label" htmlFor="playerIntelligenceStat">Player Intelligence:</label>
                     <input
                         className='form-input'
                         placeholder="12"
@@ -239,7 +239,7 @@ const PlayerForm = () => {
                         value={formState.playerIntelligenceStat}
                         onChange={handleChange}
                     />
-                    <label htmlFor="playerWisdomStat">Player Wisdom:</label>
+                    <label className="form-label" htmlFor="playerWisdomStat">Player Wisdom:</label>
                     <input
                         className='form-input'
                         placeholder="13"
@@ -249,7 +249,7 @@ const PlayerForm = () => {
                         value={formState.playerWisdomStat}
                         onChange={handleChange}
                     />
-                    <label htmlFor="playerCharismaStat">Player Charisma:</label>
+                    <label className="form-label" htmlFor="playerCharismaStat">Player Charisma:</label>
                     <input
                         className='form-input'
                         placeholder="14"
@@ -269,7 +269,7 @@ const PlayerForm = () => {
                         Add Player!
                     </button> */}
                 </form>
-                {error && <div>Add Player Failed :(</div>}
+                {error && <div className="text-primary">Add Player Failed :(</div>}
         </div>
     );
 

@@ -15,14 +15,24 @@
 .modal-main {
   position: fixed;
   color: #F7F4EA;
-  width: 80%;
+  width: 60%;
   height: auto;
   top: 50%;
   left: 50%;
+  border: 3px solid #6b717e;
+  border-radius: 0.3rem;
   padding: 10px 20px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   background-image: url("./img/backgroundimg.png");
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}
+
+.modal-img {
+  background-color: #b7990d;
+  margin: 0;
+  border: 2px solid #F7F4EA;
 }
 
 .display-block {
@@ -131,6 +141,7 @@ nav a {
   margin: 0 15px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  border-radius: 0.3rem;
 }
 
 nav a:hover {
@@ -224,6 +235,7 @@ nav a:hover {
 }
 
 .form-label {
+  color: #F7F4EA;
   font-size: 1.2rem;
   margin: 0.625rem 0 0.25rem;
 }
