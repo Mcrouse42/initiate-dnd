@@ -22,7 +22,7 @@ const PlayerList = ({ players, title }) => {
       <Grid container spacing={1} justify="center">
       {players &&
         players.map((player) => (
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={6} md={6}>
           <Card key={player._id} className="">
             <Card.Body>
             <p className="">
@@ -39,7 +39,7 @@ const PlayerList = ({ players, title }) => {
               <Link to={`/player/${player._id}`}>
                 {/* <p>{player.playerName}</p> */}
               </Link>
-                <Card.Title><h2>{player.playerName}</h2></Card.Title>
+                <Card.Title className="text-center mb-3"><h2>{player.playerName}</h2></Card.Title>
               <Card.Text>
                 <ListGroup>
                 <ListGroupItem><p>player created on {player.createdAt}</p></ListGroupItem>
