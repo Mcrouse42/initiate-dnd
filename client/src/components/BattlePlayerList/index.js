@@ -3,56 +3,6 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Modal from "../Modal";
 
 const BattlePlayerList = (props) => {
-<<<<<<< HEAD
-    const [modelStatus, setModalStatus] = useState({ show: false });
-    const [playersArray, setPlayersArray] = useState(props.players);
-  
-    // let givePlayersInit = () => {
-
-    //     let playerInitMap = playersArray.map(player => {
-    //         player.initiative = 0;
-
-    //         return player
-    //     });
-
-    //     setPlayersArray(playerInitMap);
-    // }
-
-    // useEffect(() => {
-    //     givePlayersInit();
-    // }, []);
-  
-    // let updatePlayerInit = (playerNameValue, updatedInitValue) => {
-    //   playersArray.map((player) => {
-    //     if (playerNameValue === player.playerName) {
-    //       player.initative = updatedInitValue;
-    //     }
-    //     return player;
-    //   });
-
-      let showModal = () => {
-        setModalStatus({ show: true });
-      };
-      let hideModal = () => {
-        setModalStatus({ show: false });
-      };
-
-      // let mySortFunction = () => {
-      //     playersArray.sort((a, b) => (b.intiative - a.initiative))
-      // };
-
-    //   function mySortFunction(a, b) {
-    //     if (a.initative < b.initative) {
-    //       return -1;
-    //     }
-    //     if (a.initative > b.initative) {
-    //       return 1;
-    //     }
-    //     return 0;
-    //   }
-    //     playersArray.sort(mySortFunction);
-    // };
-=======
   const [modelStatus, setModalStatus] = useState({ show: false });
   const [playersArray, setPlayersArray] = useState(props.players);
 
@@ -146,7 +96,6 @@ const BattlePlayerList = (props) => {
       setModalStatus({ show: false });
   };
 
->>>>>>> 31dbb707f35768ca4bba3ba2757b68dd1bc4ff95
 
 return (
     <div id="player-container">
