@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'BrianJames';
+  src: url("./font/BrianJames.ttf");
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -16,7 +21,8 @@ body {
   line-height: 1.5;
   font-size: 20px;
   color: #000000;
-  background-color: #d1d1d1;
+  background-color: #f5f5f5;
+  text-transform: capitalize;
 }
 
 h1 {
@@ -41,6 +47,7 @@ h6 {
   font-size: 8rem;
   margin: 5px 0;
   line-height: 1.25;
+  text-transform: capitalize;
 }
 
 h1 {
@@ -111,6 +118,7 @@ nav a:hover {
 .pill {
   font-size: 1.3rem;
   text-decoration: none;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
   padding: 0.5rem 1.2rem;
   margin: 5px 0;
   border-radius: 0.3rem;
@@ -134,11 +142,12 @@ nav a:hover {
 
 /* CARDS */
 .card {
-  margin: 0 0 20px 0;
-  border: 3px solid #6b717e;
+  margin: 10px 10px;
+  padding: 20px 0px;
+  border: 3px solid #000000;
   border-radius: 0.3rem;
   background-color: #b7990d;
-  color: #6b717e;
+  color: #000000;
 }
 
 .card-header {
@@ -149,16 +158,32 @@ nav a:hover {
   border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
 
+.card-img {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px 5px;
+}
+
 .card-body {
-  padding: 2.5%;
+  padding: 5px 5px;
   font-size: 1.4rem;
 }
 
 /* FORM */
+.form
 .form-label,
 .form-input,
 .form-textarea {
   display: block;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0.3rem;
+  background-color: #F7F4EA;
 }
 
 .form-label {
