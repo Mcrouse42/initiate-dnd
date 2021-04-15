@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Modal from "../Modal";
 import PlayerList from "../PlayerList";
 import { Link } from 'react-router-dom';
@@ -39,6 +40,17 @@ const BattlePlayerList = (props) => {
         //setPlayersArray(playersArray);
     }
     }, [playersArray]);
+
+    useLayoutEffect(() => {
+        console.log('layer effect');
+        console.log(playersArray);
+    }, [playersArray]);
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevState.) !== this.state. {
+    //         console.log('state has changed')
+    //     }
+    // }
     
     // useEffect(() => {
     //     givePlayersInit();
@@ -54,6 +66,7 @@ const BattlePlayerList = (props) => {
         playersArray.sort(mySortFunction);
         setPlayersArray(playersArray);
     }
+
 
   let showModal = () => {
     setModalStatus({ show: true });
@@ -81,6 +94,7 @@ function mySortFunction(a, b) {
         // console.log(player);
         });
     }
+
 // useEffect(() => {
 //     playersArray.map((player) => {
 //         player.initiative = parseInt(document.getElementById(player.playerName).value)
@@ -111,6 +125,7 @@ return (
               <span onClick={showModal}> + </span>
                       <input id={player.playerName} onChange={sortPlayers} defaultValue = '0' name='playerInitiative' placeholder="initiative number" />
                       {/* <input id="initiative" onChange={mySortFunction()} placeholder="initiative number" /> */}
+
                       {/* <input id={player.playerName} disabled /> */}
             </h2>
             <Modal show={modelStatus.show} handleClose={hideModal}>
@@ -154,6 +169,7 @@ return (
           }}
         >Battle!</Link> */}
       </button>
+
       {/* <button onClick={() => updatePlayerInit(playersArray)}>Update</button> */}
     </div>
   );
