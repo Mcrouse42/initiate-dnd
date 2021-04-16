@@ -22,12 +22,12 @@ const DungeonMasterSchema = new Schema(
       required: true,
       minlength: 5
     },
-    players: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Player'
-      }
-    ],
+    // players: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Player'
+    //   }
+    // ],
     players: [playerSchema],
     monsters: [monsterSchema]
       // [
