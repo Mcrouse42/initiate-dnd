@@ -48,13 +48,11 @@ const MonsterSearch = () => {
 
             const { results } = await response.json();
             const monster = results[0];
-            console.log(results);
 
             const monsterData = results.map((monster) => ({
                 monsterName: monster.name,
                 monsterSize: monster.size,
                 monsterType: monster.type,
-                //monsterImg: `../style/images/${monster.type}.png`, // this does not link to anything.  Throws errors.
                 monsterAlignment: monster.alignment,
                 // speed is an object - using only walk for now
                 monsterSpeed: monster.speed.walk,
@@ -67,6 +65,7 @@ const MonsterSearch = () => {
                 monsterIntelligenceStat: monster.intelligence,
                 monsterWisdomStat: monster.wisdom,
                 monsterCharismaStat: monster.charisma,
+                // actions to be added at a later time/future development
                 // monsterActions: monster.actions.map((actions) => ({
                 //     actionName: actions?.name,
                 //     actionDesc: actions?.desc,
@@ -77,7 +76,6 @@ const MonsterSearch = () => {
             }));
 
             setSearchedMonsters(monsterData);
-            console.log(monsterData);
             setSearchInput('');
             } catch (err) {
             console.error(err);
@@ -88,7 +86,6 @@ const MonsterSearch = () => {
     const handleSaveMonster = async (monsterName) => {
         // find the monster in 'searchedMonsters' state by the matching name
         const monsterToSave = searchedMonsters.find((monster) => monster.monsterName === monsterName);
-        console.log(monsterToSave);
 
         // get token
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -152,30 +149,6 @@ const MonsterSearch = () => {
                                     <ListGroup.Item><h5>Wisdom:</h5> {monster.monsterWisdomStat}</ListGroup.Item>
                                     </ListGroup>
                                 </Card.Text>
-                                {/* <Table bordered size="sm">
-                                    <thead>
-                                        <tr>
-                                        <th>Action</th>
-                                        <th>Description</th>
-                                        <th>Attack Bonus</th>
-                                        <th>Damange Dice</th>
-                                        <th>Damage Bonus</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    {monster.monsterActions.map((action) => {
-                                        return (
-                                            <tr>
-                                            <td>{action.actionName}</td>
-                                            <td>{action.actionDesc}</td>
-                                            <td>{action.actionAttack}</td>
-                                            <td>{action.actionDamageDice}</td>
-                                            <td>{action.actionDamageBonus}</td>
-                                            </tr>
-                                        )
-                                    })}
-                                    </tbody>
-                                </Table> */}
                                 {Auth.loggedIn() && (
                                     <Button
                                     disabled={savedMonsterNames?.some((savedMonsterName) => savedMonsterName === monster.monsterName)}

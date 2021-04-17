@@ -1,15 +1,5 @@
 import React from 'react';
-// import BattlePlayerList from "../components/BattlePlayerList";
-// import { Redirect, useParams } from 'react-router-dom';
 
-// //import PlayerForm from '../components/PlayerForm';
-
-// import { useQuery } from '@apollo/react-hooks';
-// import { QUERY_DM, QUERY_ME } from '../utils/queries';
-// import Auth from '../utils/auth';
-// //import { Player } from '../../../server/models';
-
-//import style componenets from react-bootstrap
 import { Card, ListGroup } from 'react-bootstrap';
 
 const GenerateNPC = () => {
@@ -172,13 +162,6 @@ const GenerateNPC = () => {
     const npcWisdomStat = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
     const npcCharismaStat = Math.floor(Math.random() * (20 - 10 + 10)) + 10; //(max - min + 1)) + min
     const npcPersonalityTraits = getRandom(personalityTraits, 4);
-
-    console.log (npcClass, npcRace, npcFirstName, npcLastName, npcAlignment, npcGender, npcEyeColor, npcArmorClass, npcHitPoints, npcStrengthStat, npcDexterityStat, npcConstitutionStat,
-        npcIntelligenceStat,
-        npcWisdomStat,
-        npcCharismaStat,
-        npcPersonalityTraits);
-
   
     return (
         <div>

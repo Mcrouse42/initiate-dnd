@@ -17,11 +17,8 @@ const BattlePrep = () => {
   const { loading, data } = useQuery(userParam ? QUERY_DM : QUERY_ME, {
     variables: { dungeonMaster: userParam }
   });
-  //console.log("data", data);
-  //console.log("data.me", data.me);
 
   const dungeonMaster = data?.me || data?.dungeonMaster || {};
-  //console.log(dungeonMaster);
 
   // redirect to personal profile page if username is the logged-in user's
   if (Auth.loggedIn() && Auth.getProfile().data.dungeonMaster === userParam) {
@@ -39,8 +36,6 @@ const BattlePrep = () => {
       </h4>
     );
   }
-  console.log(dungeonMaster.dungeonMaster);
-  console.log(dungeonMaster.players);
   
   return (
     <div>

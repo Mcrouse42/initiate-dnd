@@ -23,12 +23,10 @@ const monsterSchema = new Schema(
       required: true,
       trim: true
     },
-    // changing speed to just walking speed for now
+    // speed is only walking speed
     monsterSpeed: {
       type: Number,
       trim: true
-      // speedType: {type: String},
-      // speedValue: {type: String}
     },
     monsterChallenge: {
       type: Number,
@@ -89,7 +87,5 @@ const monsterSchema = new Schema(
     }
   }
 );
-
-// const Monster = model('Monster', monsterSchema);
 
 module.exports = monsterSchema;

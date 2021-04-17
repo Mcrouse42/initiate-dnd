@@ -56,7 +56,6 @@ const PlayerForm = () => {
 
     // submit form (async)
     const handleFormSubmit = async (formState) => {
-        //event.preventDefault();
 
         console.log("button to create new player pressed");
         console.log(formState);
@@ -104,15 +103,6 @@ const PlayerForm = () => {
         console.log(playerData);
         console.log(typeof(playerData));
 
-        //setSearchedPlayers(playerData);
-        //console.log(playerData);
-        //setFormState('');
-
-
-        // find the monster in 'searchedMonsters' state by the matching name
-        // const playerToSave = searchedPlayers.find(playerData);
-        // console.log(playerToSave);
-
         // get token
         const token = Auth.loggedIn() ? Auth.getToken() : null;
             console.log("Check for token reached");
@@ -126,10 +116,6 @@ const PlayerForm = () => {
                 console.log(finalPlayerData);
                 console.log(typeof(finalPlayerData));
                 await addPlayer( { variables: {  playerData: finalPlayerData  } } );
-                //const { data } = await addPlayer( { variables: {  playerData: {finalPlayerData } } } );
-                
-                // if monster successfully saves to user's account, save monster name to state
-                //setSavedMonsterNames([...savedMonsterNames, monsterToSave.monsterName]);
             } catch (err) {
                 console.error(err);
             }
@@ -265,9 +251,6 @@ const PlayerForm = () => {
                             Add Player!
                         </Button>
                     )}
-                    {/* <button className='btn d-block w-100' type='submit'>
-                        Add Player!
-                    </button> */}
                 </form>
                 {error && <div className="text-primary">Add Player Failed :(</div>}
         </div>
