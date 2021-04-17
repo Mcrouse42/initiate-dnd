@@ -1,9 +1,6 @@
 // import the gql tagged template function
 const { gql } = require("apollo-server-express");
 
-// make a different input type and pass it into actions
-//removed id from player
-
 const typeDefs = gql`
   type DungeonMaster {
     _id: ID
@@ -104,21 +101,3 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
-
-// removed from mutation
-
-// addPlayer(
-//   _id: ID
-//   playerName: String!
-//   playerClass: String!
-//   playerRace: String!
-//   playerLevel: Int
-//   playerArmorClass: Int
-//   playerHitPoints: Int
-//   playerStrengthStat: Int
-//   playerDexterityStat: Int
-//   playerConstitutionStat: Int
-//   playerIntelligenceStat: Int
-//   playerWisdomStat: Int
-//   playerCharismaStat: Int
-// ): Player

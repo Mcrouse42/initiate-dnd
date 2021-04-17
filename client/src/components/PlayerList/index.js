@@ -12,8 +12,6 @@ const PlayerList = ({ players, title }) => {
     return <h3>No Players yet</h3>;
   }
 
-  // send all players data to function which will take the stats and send back the stats plus the modifiers
-  //getPlayerStatModifier(players);
 
   return (
     <div>
@@ -37,7 +35,6 @@ const PlayerList = ({ players, title }) => {
             
             <div className="">
               <Link to={`/player/${player._id}`}>
-                {/* <p>{player.playerName}</p> */}
               </Link>
                 <Card.Title className="text-center mb-3"><h2>{player.playerName}</h2></Card.Title>
               <Card.Text>

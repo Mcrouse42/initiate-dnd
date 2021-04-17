@@ -83,10 +83,9 @@ const resolvers = {
       if (context.dungeonMaster) {
         const updatedDungeonMaster = await DungeonMaster.findOneAndUpdate(
           { _id: context.dungeonMaster._id },
-          // if error - look at schema, may want to add monster ID from mongoose instead?
+          // if error - look at schema, may want to add monster ID from mongoose instead
           // { $addToSet: { monsters: _id} },
           { $addToSet: { monsters: monsterData } },
-          // use populate when you want to get more data
           { new: true }
         );
         return updatedDungeonMaster;
@@ -97,123 +96,3 @@ const resolvers = {
 };
 
 module.exports = resolvers;
-
-
-// old model for addPlayer
-// addPlayer: async (parent, args, context) => {
-//   console.log("ADD PLAYER REACHED!");
-//   console.log(args);
-//   if (context.dungeonMaster) {
-//     const player = await Player.create({
-//       ...args,
-//       dungeonMaster: context.dungeonMaster,
-//     });
-
-//     await DungeonMaster.findByIdAndUpdate(
-//       { _id: context.dungeonMaster._id },
-//       { $push: { players: player._id } },
-//       { new: true }
-//     );
-
-//     return player;
-//   }
-
-//   throw new AuthenticationError("You need to be logged in!");
-// }
-
-// ------------------------ BACKEND TESTING INFO ------------------------
-// get all dungeon masters (players included):
-
-// query {
-//   dungeonMasters {
-//     _id
-//     dungeonMaster
-//     email
-//     players {
-//       _id
-//       playerName
-//   		playerClass
-//   		playerRace
-//   		playerLevel
-//   		playerArmorClass
-//   		playerHitPoints
-//       playerStrengthStat
-//     	playerDexterityStat
-//     	playerConstitutionStat
-//     	playerIntelligenceStat
-//     	playerWisdomStat
-//     	playerCharismaStat
-//     }
-//   }
-// }
-
-// get one dungeon master by username (players included)
-
-// query getSingleDM($dungeonMaster: String!) {
-//   dungeonMaster(dungeonMaster: $dungeonMaster) {
-//     _id
-//     dungeonMaster
-//     email
-//     players {
-//       _id
-//       playerName
-//   		 playerClass
-//   		 playerRace
-//   	 	 playerLevel
-//   	 	 playerArmorClass
-//   		 playerHitPoints
-//       playerStrengthStat
-//     	 playerDexterityStat
-//     	playerConstitutionStat
-//     	playerIntelligenceStat
-//     	playerWisdomStat
-//     	playerCharismaStat
-//     }
-//   }
-// }
-
-// get all players
-
-// query {
-//   players {
-//     _id
-//     playerName
-//   	playerClass
-//   	playerRace
-//   	playerLevel
-//   	playerArmorClass
-//   	playerHitPoints
-//     playerStrengthStat
-//     playerDexterityStat
-//     playerConstitutionStat
-//     playerIntelligenceStat
-//     playerWisdomStat
-//     playerCharismaStat
-//   }
-// }
-
-// get one player by playerName
-
-// query getSinglePlayer($playerName: String!) {
-//   player(playerName: $playerName) {
-//     _id
-//     playerName
-//   	playerClass
-//   	playerRace
-//   	playerLevel
-//   	playerArmorClass
-//   	playerHitPoints
-//     playerStrengthStat
-//     playerDexterityStat
-//     playerConstitutionStat
-//     playerIntelligenceStat
-//     playerWisdomStat
-//     playerCharismaStat
-//   }
-// }
-
-// Query variables 
-// {
-//   "playerName": "Angus_Batz"
-// }
-

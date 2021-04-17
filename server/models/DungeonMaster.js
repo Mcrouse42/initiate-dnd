@@ -5,7 +5,7 @@ const playerSchema = require('./Player');
 
 const DungeonMasterSchema = new Schema(
   {
-    dungeonMaster: {      // username changed to dungeonMaster
+    dungeonMaster: {   
       type: String,
       required: true,
       unique: true,
@@ -22,22 +22,10 @@ const DungeonMasterSchema = new Schema(
       required: true,
       minlength: 5
     },
-    // players: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Player'
-    //   }
-    // ],
     players: [playerSchema],
     monsters: [monsterSchema]
-      // [
-      // {
-      //   type: Schema.Types.ObjectId,
-      //   ref: 'Monster'
-      // }
-    // ]
-  },
-  {
+    },
+    {
     toJSON: {
       virtuals: true
     }

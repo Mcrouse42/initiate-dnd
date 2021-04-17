@@ -15,7 +15,6 @@ const Signup = () => {
       ...formState,
       [name]: value,
     });
-    //console.log(formState);
   };
 
   // submit form

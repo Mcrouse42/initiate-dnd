@@ -17,7 +17,6 @@ const BattlePlayerList = (props) => {
       // set state to the player init map which marks all initiative as 0
       setPlayersArray(playerInitMap);
   }
-  //console.log(playersArray);
 
 
   // ------------------------------------------------ USE EFFECT ------------------------------------------------
@@ -25,21 +24,17 @@ const BattlePlayerList = (props) => {
   const firstUpdate = useRef(true);
   // use effect to track changes to the array playersArray
   useEffect(() => {
-    console.log(firstUpdate);
     if (firstUpdate.current) {
       firstUpdate.current = false;
       givePlayersInit();
-      console.log(playersArray);
     }
     else {
       playersArray.map((player) => {
         player.initiative = parseInt(document.getElementById(player.playerName).value)
       });
-      console.log(playersArray);
         // const hold = playersArray;
         // setPlayersArray([]);
       playersArray.sort(mySortFunction);
-      console.log(playersArray);
         //setPlayersArray(playersArray);
     }
   }, [playersArray]);
@@ -47,8 +42,6 @@ const BattlePlayerList = (props) => {
 
   // ------------------------------------------------ STYLE ------------------------------------------------
   useLayoutEffect(() => {
-    console.log('layer effect');
-    console.log(playersArray);
   }, [playersArray]);
 
   // ------------------------------------------------ SORTING FUNCTIONS ------------------------------------------------
@@ -58,7 +51,6 @@ const BattlePlayerList = (props) => {
       player.initiative = parseInt(document.getElementById(player.playerName).value)
     });
     
-    console.log(playersArray);
     playersArray.sort(mySortFunction);
     setPlayersArray(playersArray);
   }
@@ -74,14 +66,9 @@ const BattlePlayerList = (props) => {
     setPlayersArray(playersArray.slice())
       
     playersArray.forEach((player) => {
-      //console.log(document.getElementById(player.playerName));
-      //console.log(document.getElementById(player.playerName).value);
 
       // remove the textbox after initiative order is achieved
       document.getElementById(player.playerName).style.display = "none";
-      //document.getElementById(player.playerName).value = parseInt(player.initiative);
-      // document.getElementById(player.playerName).setAttribute("value", player.initiative);
-      // console.log(player);
     });
   }
 
@@ -139,12 +126,6 @@ return (
         </div>
       ))}
       <button className="btn" onClick={() => updateButton() }>SORT PLAYERS BY INITIATIVE</button>
-        {/* <Link
-          to={{
-            pathname: "/battle",
-            state: {playersArray} // your data array of objects
-          }}
-        >Battle!</Link> */}
     </div>
   );
 };

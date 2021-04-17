@@ -22,14 +22,8 @@ db.once("open", async () => {
 
   const foundIndexes = await DungeonMaster.collection.getIndexes(dmData);
   console.log("These are the indexes: ---------------- ", foundIndexes);
-  //const removeIndexes = await DungeonMaster.collection.getIndexes(dmData);
-
-  //const createdDMs = await DungeonMaster.collection.dropIndex( dungeonMaster );
   const createdDMs = await DungeonMaster.collection.insertMany(dmData);
-  // DungeonMaster.collection.getIndexes({full: true}).then(indexes => {
-  //   console.log("indexes:", indexes);
-  //   // ...
-  // }).catch(console.error);
+
 
   // create player data
   let createdPlayers = [];
