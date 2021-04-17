@@ -9,8 +9,8 @@ const resolvers = {
         const dungeonMasterData = await DungeonMaster.findOne({
           _id: context.dungeonMaster._id,
         })
-          .select("-__v -password")
-          .populate("players");
+          .select("-__v -password");
+         // .populate("players");
 
         return dungeonMasterData;
       }
