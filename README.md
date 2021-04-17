@@ -67,7 +67,9 @@ Once you are ready to battle, keep track of the player and monster Hit Points by
 
 ## KnownBugs
 
-When you create a Dungeon Master (DM) through the signup page, you must enter a player or monster to your profile before you are able to add another DM.
+The deployed website has a small bug. When you create a new Dungeon Master you have to create/save a player or monster in order to create a new Dungeon Master after logging out. We believe it's an association issue on the backend. 
+
+If it says "signup failed" try logging in with the email and password you signed up with (even though it says failed) and it should let you log in. 
 
 ## License
 
