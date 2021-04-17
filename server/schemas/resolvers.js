@@ -26,8 +26,8 @@ const resolvers = {
     dungeonMaster: async (parent, { username }) => {
       const params = username ? { username } : {};
       return DungeonMaster.find(params)
-        .select("-__v -password")
-        .populate("players");
+        .select("-__v -password");
+        //.populate("players");
     },
 
     // get all players
